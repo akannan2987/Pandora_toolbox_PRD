@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pandora Toolbox - Interactive Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      overflow: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .slide {
+      display: none;
+      min-height: 100vh;
+      animation: fadeIn 0.5s ease-in;
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #06b6d4);
+      transition: width 0.3s ease;
+      z-index: 1000;
+    }
+    .slide-number {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      z-index: 100;
+    }
+    .nav-button {
+      position: fixed;
+      bottom: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+    .nav-button:hover {
+      background: white;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .nav-prev { left: 2rem; }
+    .nav-next { left: 6rem; }
+    .bullet-point {
+      opacity: 0;
+      animation: slideIn 0.5s ease forwards;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="slide-number" id="slideNumber">1 / 12</div>
+
+  <div class="nav-button nav-prev" onclick="previousSlide()">
+    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </div>
+
+  <div class="nav-button nav-next" onclick="nextSlide()">
+    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </div>
+
+  <!-- Slide 1: Title -->
+  <div class="slide active flex-col items-center justify-center p-16 text-center">
+    <img src="/NESTLElogo-Alternative-with-wordmark-signature-oak (1).png" alt="Nestlé Logo" class="h-32 w-auto object-contain mb-12">
+    <h1 class="text-7xl font-bold text-white mb-6">Pandora Toolbox</h1>
+    <h2 class="text-3xl text-blue-300 mb-4">Modern Chemical Data Management Platform</h2>
+    <p class="text-xl text-slate-300 max-w-3xl">Transforming chemical registration, toxicology tracking, and regulatory compliance for Nestlé Research</p>
+    <div class="mt-12 flex gap-4">
+      <span class="px-6 py-3 bg-blue-600 text-white rounded-full text-lg">Product Requirements Document v1.0</span>
+    </div>
+  </div>
+
+  <!-- Slide 2: Executive Overview -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Executive Overview</h1>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+          <div class="text-5xl mb-4">🎯</div>
+          <h3 class="text-2xl font-bold text-white mb-4">Vision</h3>
+          <p class="text-slate-200 text-lg leading-relaxed">Centralized platform for chemical data, toxicology results, screening data, and regulatory compliance in a single source of truth</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="text-2xl font-bold text-white mb-4">Impact</h3>
+          <p class="text-slate-200 text-lg leading-relaxed">Reduce manual data entry by 80%, accelerate compliance reporting, and enable real-time regulatory tracking</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+          <div class="text-5xl mb-4">🔧</div>
+          <h3 class="text-2xl font-bold text-white mb-4">Technology</h3>
+          <p class="text-slate-200 text-lg leading-relaxed">Built on Snowflake data warehouse with automated ETL pipelines, API integrations, and embedded Streamlit interfaces</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+          <div class="text-5xl mb-4">📊</div>
+          <h3 class="text-2xl font-bold text-white mb-4">Scale</h3>
+          <p class="text-slate-200 text-lg leading-relaxed">Managing 10,000+ chemicals, millions of toxicology records, with real-time regulatory updates from 50+ countries</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Two Implementation Scenarios -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Implementation Approaches</h1>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="bg-gradient-to-br from-green-600/20 to-emerald-600/20 backdrop-blur-lg rounded-2xl p-8 border-2 border-green-400/50">
+          <h2 class="text-4xl font-bold text-green-300 mb-6">Scenario A</h2>
+          <h3 class="text-2xl font-semibold text-white mb-4">Fresh Build on Snowflake</h3>
+          <ul class="space-y-4 text-slate-200 text-lg">
+            <li class="bullet-point flex items-start" style="animation-delay: 0.1s">
+              <span class="text-green-400 mr-3 text-2xl">✓</span>
+              <span>Build new modern web application from scratch</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.2s">
+              <span class="text-green-400 mr-3 text-2xl">✓</span>
+              <span>Custom UI/UX designed for workflows</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.3s">
+              <span class="text-green-400 mr-3 text-2xl">✓</span>
+              <span>Direct Snowflake integration</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.4s">
+              <span class="text-green-400 mr-3 text-2xl">✓</span>
+              <span>Full control and flexibility</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.5s">
+              <span class="text-green-400 mr-3 text-2xl">✓</span>
+              <span>Timeline: 6-9 months</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-lg rounded-2xl p-8 border-2 border-blue-400/50">
+          <h2 class="text-4xl font-bold text-blue-300 mb-6">Scenario B</h2>
+          <h3 class="text-2xl font-semibold text-white mb-4">Migration with Dotmatics</h3>
+          <ul class="space-y-4 text-slate-200 text-lg">
+            <li class="bullet-point flex items-start" style="animation-delay: 0.1s">
+              <span class="text-blue-400 mr-3 text-2xl">✓</span>
+              <span>Phase 1: Migrate data to Snowflake, keep Dotmatics UI</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.2s">
+              <span class="text-blue-400 mr-3 text-2xl">✓</span>
+              <span>Phase 2: Build automated ETL pipelines</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.3s">
+              <span class="text-blue-400 mr-3 text-2xl">✓</span>
+              <span>Phase 3: Embed Streamlit for manual entry</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.4s">
+              <span class="text-blue-400 mr-3 text-2xl">✓</span>
+              <span>Gradual transition minimizes disruption</span>
+            </li>
+            <li class="bullet-point flex items-start" style="animation-delay: 0.5s">
+              <span class="text-blue-400 mr-3 text-2xl">✓</span>
+              <span>Timeline: 12-18 months (phased)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Core Features - Chemical Management -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Chemical Registration & Management</h1>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">📤</div>
+          <h3 class="text-xl font-bold text-white mb-3">Bulk Upload</h3>
+          <p class="text-slate-200">Excel/SDF file import with drag-drop. Load 500 chemicals in 30 seconds</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">🔬</div>
+          <h3 class="text-xl font-bold text-white mb-3">Auto Properties</h3>
+          <p class="text-slate-200">RDKit integration calculates MW, formula, LogP from SMILES automatically</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">🔍</div>
+          <h3 class="text-xl font-bold text-white mb-3">Structure Search</h3>
+          <p class="text-slate-200">Tanimoto similarity algorithm finds compounds with 90%+ structural match</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">📋</div>
+          <h3 class="text-xl font-bold text-white mb-3">Version Control</h3>
+          <p class="text-slate-200">Automatic versioning tracks all changes with full audit trail</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">⚠️</div>
+          <h3 class="text-xl font-bold text-white mb-3">Duplicate Check</h3>
+          <p class="text-slate-200">Real-time detection warns before adding existing chemicals</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div class="text-4xl mb-3">💾</div>
+          <h3 class="text-xl font-bold text-white mb-3">Multi-Format Export</h3>
+          <p class="text-slate-200">Export to Excel, SDF, CSV, or JSON for external systems</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Data Upload & Processing -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Flexible Data Upload System</h1>
+      <div class="space-y-6">
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
+          <h3 class="text-3xl font-bold text-white mb-4">Admin-Configurable Templates</h3>
+          <p class="text-slate-200 text-lg mb-4">No coding required - admins create upload templates via UI with validation rules</p>
+          <div class="flex gap-4 flex-wrap">
+            <span class="px-4 py-2 bg-blue-600/30 text-blue-200 rounded-lg">GC-MS</span>
+            <span class="px-4 py-2 bg-green-600/30 text-green-200 rounded-lg">LC-MS</span>
+            <span class="px-4 py-2 bg-purple-600/30 text-purple-200 rounded-lg">Headspace</span>
+            <span class="px-4 py-2 bg-orange-600/30 text-orange-200 rounded-lg">Toxicology</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Real-Time Validation</h3>
+            <p class="text-slate-200">Row-by-row validation with highlighted errors: "Row 5: SBL=150 exceeds max 100"</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Auto-Linking</h3>
+            <p class="text-slate-200">Automatically links records via CAS/SMILES during upload</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Progress Tracking</h3>
+            <p class="text-slate-200">"65% complete, ~2 min remaining" with detailed progress bars</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Full Audit Trail</h3>
+            <p class="text-slate-200">Every upload logged: who, when, how many records, what changed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Search & Discovery -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Powerful Search & Discovery</h1>
+      <div class="space-y-6">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-violet-600/20 to-purple-600/20 backdrop-blur-lg rounded-xl p-8 border border-violet-400/30">
+            <h3 class="text-3xl font-bold text-white mb-4">Advanced Boolean Search</h3>
+            <p class="text-slate-200 text-lg mb-4">Complex queries with AND/OR/NOT logic</p>
+            <div class="bg-black/30 p-4 rounded-lg font-mono text-sm text-green-300">
+              (aspirin OR ibuprofen) AND (weight>200)
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 backdrop-blur-lg rounded-xl p-8 border border-cyan-400/30">
+            <h3 class="text-3xl font-bold text-white mb-4">Structure Similarity</h3>
+            <p class="text-slate-200 text-lg mb-4">Find similar compounds with configurable threshold</p>
+            <p class="text-cyan-300">Draw naphthalene → finds phenanthrene (95%), anthracene (94%)</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-3xl mb-3">🔤</div>
+            <h3 class="text-xl font-bold text-white mb-2">Multi-Name Search</h3>
+            <p class="text-slate-200 text-sm">Search across IUPAC, common names, and aliases</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-3xl mb-3">📊</div>
+            <h3 class="text-xl font-bold text-white mb-2">Range Filters</h3>
+            <p class="text-slate-200 text-sm">Slider controls for MW, LogP, and numeric properties</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-3xl mb-3">💾</div>
+            <h3 class="text-xl font-bold text-white mb-2">Saved Searches</h3>
+            <p class="text-slate-200 text-sm">Save complex queries as templates for one-click reuse</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Sample Management -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Integrated Sample Management</h1>
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 backdrop-blur-lg rounded-xl p-8 border border-emerald-400/30">
+          <h3 class="text-3xl font-bold text-white mb-4">Direct SLIMS Integration</h3>
+          <p class="text-slate-200 text-xl">Real-time API connection syncs samples automatically every hour - no manual export needed</p>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">🔄</div>
+            <h3 class="text-xl font-bold text-white mb-3">Auto Status Tracking</h3>
+            <p class="text-slate-200">"Registered" → "Screening Complete" → "Compliant"</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">📦</div>
+            <h3 class="text-xl font-bold text-white mb-3">Bulk Operations</h3>
+            <p class="text-slate-200">Select 500 samples, apply actions to all at once</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">🔒</div>
+            <h3 class="text-xl font-bold text-white mb-3">Confidentiality</h3>
+            <p class="text-slate-200">Row-level security ensures proper access control</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">📎</div>
+            <h3 class="text-xl font-bold text-white mb-3">Document Storage</h3>
+            <p class="text-slate-200">Cloud-based attachment storage with metadata</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">🧪</div>
+            <h3 class="text-xl font-bold text-white mb-3">Composition Tracking</h3>
+            <p class="text-slate-200">Version-controlled sample composition changes</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div class="text-4xl mb-3">🔗</div>
+            <h3 class="text-xl font-bold text-white mb-3">Auto-Linking</h3>
+            <p class="text-slate-200">Screening results auto-link to samples on completion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Regulatory Compliance -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Regulatory Compliance Automation</h1>
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-red-600/20 to-orange-600/20 backdrop-blur-lg rounded-xl p-8 border border-red-400/30">
+          <h3 class="text-3xl font-bold text-white mb-4">Real-Time Regulatory Updates</h3>
+          <p class="text-slate-200 text-xl">MDC Tech API integration provides automatic updates from 50+ countries - no manual tracking</p>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Auto Compliance Checking</h3>
+            <p class="text-slate-200 mb-4">System automatically compares chemical properties against regulatory limits</p>
+            <div class="text-green-400 font-semibold">Aspirin MW=180 vs limit=300 → PASS ✓</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-3">Smart Alerts</h3>
+            <p class="text-slate-200 mb-4">When regulations change, system finds affected chemicals and sends alerts</p>
+            <div class="text-orange-400 font-semibold">Lead limit changed → 47 affected chemicals → email sent</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-lg font-bold text-white mb-2">Multi-Region Support</h3>
+            <p class="text-slate-200 text-sm">EU, US FDA, Switzerland, China - all in one system</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-lg font-bold text-white mb-2">Country Filtering</h3>
+            <p class="text-slate-200 text-sm">Select France + Food → 1,250 relevant regulations</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-lg font-bold text-white mb-2">Auto Reports</h3>
+            <p class="text-slate-200 text-sm">Generate compliance PDFs with one click</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 9: ETL & Automation -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Automated Data Pipelines</h1>
+      <div class="space-y-6">
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">End-to-End Automation</h3>
+          <div class="flex items-center justify-between">
+            <div class="text-center flex-1">
+              <div class="text-5xl mb-2">🔬</div>
+              <p class="text-white font-semibold">SLIMS/LIMS</p>
+              <p class="text-slate-300 text-sm">Source Systems</p>
+            </div>
+            <div class="text-3xl text-blue-400">→</div>
+            <div class="text-center flex-1">
+              <div class="text-5xl mb-2">⚙️</div>
+              <p class="text-white font-semibold">ETL Pipeline</p>
+              <p class="text-slate-300 text-sm">Extract, Transform, Load</p>
+            </div>
+            <div class="text-3xl text-blue-400">→</div>
+            <div class="text-center flex-1">
+              <div class="text-5xl mb-2">❄️</div>
+              <p class="text-white font-semibold">Snowflake</p>
+              <p class="text-slate-300 text-sm">Data Warehouse</p>
+            </div>
+            <div class="text-3xl text-blue-400">→</div>
+            <div class="text-center flex-1">
+              <div class="text-5xl mb-2">📊</div>
+              <p class="text-white font-semibold">Analytics</p>
+              <p class="text-slate-300 text-sm">PowerBI/Tableau</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+            <h4 class="text-lg font-bold text-white mb-2">Scheduled Jobs</h4>
+            <p class="text-slate-200 text-sm">Hourly, daily, or on-demand pipeline execution</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+            <h4 class="text-lg font-bold text-white mb-2">Real-Time Streaming</h4>
+            <p class="text-slate-200 text-sm">Results appear within 5 minutes via Snowpipe</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+            <h4 class="text-lg font-bold text-white mb-2">CDC Integration</h4>
+            <p class="text-slate-200 text-sm">Only load changed data for efficiency</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+            <h4 class="text-lg font-bold text-white mb-2">Error Handling</h4>
+            <p class="text-slate-200 text-sm">Auto-retry with alerting and monitoring</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10: User Experience & Collaboration -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">User Experience & Collaboration</h1>
+      <div class="grid grid-cols-2 gap-6 mb-6">
+        <div class="bg-gradient-to-br from-pink-600/20 to-rose-600/20 backdrop-blur-lg rounded-xl p-6 border border-pink-400/30">
+          <h3 class="text-2xl font-bold text-white mb-4">Role-Based Dashboards</h3>
+          <ul class="space-y-2 text-slate-200">
+            <li>• Chemist: New chemicals, structure editor</li>
+            <li>• Manager: Status reports, team analytics</li>
+            <li>• Compliance: Regulatory alerts, reports</li>
+          </ul>
+        </div>
+        <div class="bg-gradient-to-br from-indigo-600/20 to-blue-600/20 backdrop-blur-lg rounded-xl p-6 border border-indigo-400/30">
+          <h3 class="text-2xl font-bold text-white mb-4">Responsive Design</h3>
+          <p class="text-slate-200">Works seamlessly on desktop, tablet, and mobile devices with adaptive layouts</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-4">
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+          <div class="text-3xl mb-2">💬</div>
+          <h4 class="text-lg font-bold text-white mb-2">Comments</h4>
+          <p class="text-slate-200 text-sm">Annotate records with team comments</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+          <div class="text-3xl mb-2">🔔</div>
+          <h4 class="text-lg font-bold text-white mb-2">Notifications</h4>
+          <p class="text-slate-200 text-sm">Email/SMS alerts on key changes</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+          <div class="text-3xl mb-2">🎯</div>
+          <h4 class="text-lg font-bold text-white mb-2">Workflows</h4>
+          <p class="text-slate-200 text-sm">Automated trigger-action rules</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+          <div class="text-3xl mb-2">⚡</div>
+          <h4 class="text-lg font-bold text-white mb-2">Shortcuts</h4>
+          <p class="text-slate-200 text-sm">Keyboard shortcuts for power users</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11: Technical Architecture -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Technical Architecture</h1>
+      <div class="space-y-6">
+        <div class="grid grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-blue-600/30 to-cyan-600/30 backdrop-blur-lg rounded-xl p-6 border border-blue-400/40">
+            <h3 class="text-2xl font-bold text-white mb-4">Data Layer</h3>
+            <ul class="space-y-2 text-slate-200">
+              <li>• Snowflake data warehouse</li>
+              <li>• Fact/dimension tables</li>
+              <li>• Time travel queries</li>
+              <li>• Auto-scaling compute</li>
+            </ul>
+          </div>
+          <div class="bg-gradient-to-br from-purple-600/30 to-pink-600/30 backdrop-blur-lg rounded-xl p-6 border border-purple-400/40">
+            <h3 class="text-2xl font-bold text-white mb-4">Application Layer</h3>
+            <ul class="space-y-2 text-slate-200">
+              <li>• REST API with OAuth2</li>
+              <li>• Redis caching layer</li>
+              <li>• Load balancing</li>
+              <li>• Embedded Streamlit</li>
+            </ul>
+          </div>
+          <div class="bg-gradient-to-br from-green-600/30 to-emerald-600/30 backdrop-blur-lg rounded-xl p-6 border border-green-400/40">
+            <h3 class="text-2xl font-bold text-white mb-4">Integration Layer</h3>
+            <ul class="space-y-2 text-slate-200">
+              <li>• SLIMS API connector</li>
+              <li>• LIMS integration</li>
+              <li>• MDC Tech regulatory</li>
+              <li>• Airflow ETL pipelines</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <h3 class="text-2xl font-bold text-white mb-4 text-center">Security & Compliance</h3>
+          <div class="flex justify-around text-center">
+            <div>
+              <p class="text-3xl mb-2">🔒</p>
+              <p class="text-white font-semibold">End-to-end Encryption</p>
+              <p class="text-slate-300 text-sm">At-rest & in-transit</p>
+            </div>
+            <div>
+              <p class="text-3xl mb-2">👤</p>
+              <p class="text-white font-semibold">SSO Authentication</p>
+              <p class="text-slate-300 text-sm">Active Directory integration</p>
+            </div>
+            <div>
+              <p class="text-3xl mb-2">📋</p>
+              <p class="text-white font-semibold">Full Audit Trail</p>
+              <p class="text-slate-300 text-sm">Every action logged</p>
+            </div>
+            <div>
+              <p class="text-3xl mb-2">🛡️</p>
+              <p class="text-white font-semibold">GDPR Compliant</p>
+              <p class="text-slate-300 text-sm">Auto data retention</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12: Success Metrics & Next Steps -->
+  <div class="slide flex-col items-center justify-center p-16">
+    <div class="max-w-6xl w-full">
+      <h1 class="text-6xl font-bold text-white mb-12 text-center">Success Metrics & Next Steps</h1>
+      <div class="space-y-6">
+        <div class="grid grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-green-600/30 to-emerald-600/30 backdrop-blur-lg rounded-xl p-6 border border-green-400/40 text-center">
+            <p class="text-6xl font-bold text-green-300 mb-2">80%</p>
+            <p class="text-white font-semibold text-xl">Reduction in Manual Entry</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-600/30 to-cyan-600/30 backdrop-blur-lg rounded-xl p-6 border border-blue-400/40 text-center">
+            <p class="text-6xl font-bold text-blue-300 mb-2">10x</p>
+            <p class="text-white font-semibold text-xl">Faster Compliance Reports</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-600/30 to-pink-600/30 backdrop-blur-lg rounded-xl p-6 border border-purple-400/40 text-center">
+            <p class="text-6xl font-bold text-purple-300 mb-2">100%</p>
+            <p class="text-white font-semibold text-xl">Data Consistency & Accuracy</p>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">Next Steps</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-xl font-bold text-white mb-3">Phase 1: Foundation (3 months)</h4>
+              <ul class="space-y-2 text-slate-200">
+                <li>• Finalize architecture and technology stack</li>
+                <li>• Set up Snowflake environment</li>
+                <li>• Build core data models and schemas</li>
+                <li>• Establish API connections to SLIMS/LIMS</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white mb-3">Phase 2: Core Features (6 months)</h4>
+              <ul class="space-y-2 text-slate-200">
+                <li>• Chemical registration and management</li>
+                <li>• Automated ETL pipelines</li>
+                <li>• Search and discovery features</li>
+                <li>• User interface and dashboards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <p class="text-2xl text-blue-300 font-semibold">Ready to transform chemical data management at Nestlé?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+
+      document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function previousSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        previousSlide();
+      }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 50) {
+        previousSlide();
+      }
+    });
+
+    // Initialize
+    updateSlide();
+  </script>
+</body>
+</html>
