@@ -183,20 +183,20 @@ function FlowchartSection() {
 
     switch(path) {
       case '1A':
-        requirements = requirementsData.slice(0, 75);
-        title = 'Path 1A: Phase 1 Core + Transformation (75 Requirements)';
+        requirements = requirementsData.slice(0, 67);
+        title = 'Path 1A: Phase 1 Core System Build (67 Requirements)';
         break;
       case '1B':
-        requirements = requirementsData.slice(0, 75);
-        title = 'Path 1B: Phase 1+2 Complete Build (150 Requirements Total - 75 Phase 1 + 75 Phase 2)';
+        requirements = requirementsData.slice(0, 107);
+        title = 'Path 1B: Phase 1+2 Complete Build (107 Requirements Total - 67 Phase 1 + 40 Phase 2)';
         break;
       case '2A':
         requirements = requirementsData.slice(67, 93);
-        title = 'Path 2A: Phase 1 Migration + ML + Transformation (34 Requirements)';
+        title = 'Path 2A: Phase 1 Database Migration + API (26 Requirements)';
         break;
       case '2B':
-        requirements = requirementsData.slice(67, 93);
-        title = 'Path 2B: Phase 1+2 Hybrid Complete (109 Requirements Total - 34 Phase 1 + 75 Phase 2)';
+        requirements = requirementsData.slice(67, 143);
+        title = 'Path 2B: Phase 1+2 Hybrid Complete (76 Requirements Total - 26 Phase 1 + 50 Phase 2)';
         break;
     }
 
@@ -414,7 +414,7 @@ function FlowchartSection() {
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
                   <div className="font-bold">Scenario A</div>
                   <div className="text-sm">Complete Replacement</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 150 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 107 Req</div>
                 </div>
               </div>
 
@@ -431,12 +431,12 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 1A</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">75 Req</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">67 Req</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1:</strong> Core + Transformation
+                  <strong>Phase 1:</strong> Core System Build
                 </div>
-                <div className="text-xs text-slate-600">New system • Standardized transforms</div>
+                <div className="text-xs text-slate-600">Manual uploads • Modern UI</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
                   <div className="text-xs text-slate-500">Manual baseline</div>
                   <div className="text-xs font-medium text-blue-600">Best for: Core system only</div>
@@ -456,15 +456,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 1B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">150 Req (75+75)</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">107 Req (67+40)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Core + Transform + ML
+                  <strong>Phase 1 + 2:</strong> Core + ML + Platform
                 </div>
-                <div className="text-xs text-slate-600">ML identification • Standardized transforms</div>
+                <div className="text-xs text-slate-600">ML identification • Vendor independence</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→95%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Complete modernization</div>
+                  <div className="text-xs text-green-600 font-bold">Unknown ID: 10%→90%</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Complete system with ML</div>
                 </div>
               </div>
             </div>
@@ -475,7 +475,7 @@ function FlowchartSection() {
                 <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
                   <div className="font-bold">Scenario B</div>
                   <div className="text-sm">Hybrid Approach</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 109 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 76 Req</div>
                 </div>
               </div>
 
@@ -492,15 +492,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2A</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">34 Req</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">26 Req</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1:</strong> Migration + ML + Transform
+                  <strong>Phase 1:</strong> Migration + API Layer
                 </div>
-                <div className="text-xs text-slate-600">Keep UI • ML identification • Transforms</div>
+                <div className="text-xs text-slate-600">Keep Dotmatics UI • Snowflake DB</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→80%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Foundation with ML</div>
+                  <div className="text-xs text-slate-500">No user impact</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Low-risk migration</div>
                 </div>
               </div>
 
@@ -520,15 +520,15 @@ function FlowchartSection() {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">109 Req (34+75)</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">76 Req (26+50)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Full Intelligence
+                  <strong>Phase 1 + 2:</strong> Migration + Automation
                 </div>
-                <div className="text-xs text-slate-600">Same UI • ML • Full automation • Real-time</div>
+                <div className="text-xs text-slate-600">Same UI • Automated • Real-time</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→95%+</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Same UI, full intelligence</div>
+                  <div className="text-xs text-green-600 font-bold">Work reduction: 80-90%</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Same UI, full automation</div>
                 </div>
               </div>
             </div>
@@ -653,10 +653,10 @@ function ExecutiveSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
-              <PathRow path="1A" scenario="Build New" phase1="75 core+transform" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
-              <PathRow path="1B" scenario="Build New" phase1="75 core+transform" phase2="75 ML+auto" reduction="Data usability: 30%→95%" bestFor="Complete modernization" />
-              <PathRow path="2A" scenario="Hybrid" phase1="34 migrate+ML+transform" phase2="Skip" reduction="Usability: 30%→80%" bestFor="Foundation with ML" />
-              <PathRow path="2B" scenario="Hybrid" phase1="34 migrate+ML+transform" phase2="75 full auto" reduction="Usability: 30%→95%+" bestFor="⭐ Same UI, full intelligence" highlight />
+              <PathRow path="1A" scenario="Build New" phase1="67 core" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
+              <PathRow path="1B" scenario="Build New" phase1="67 core" phase2="40 ML+platform" reduction="Unknown ID: 10%→90%" bestFor="Complete system with ML" />
+              <PathRow path="2A" scenario="Hybrid" phase1="26 migrate+API" phase2="Skip" reduction="No change" bestFor="Low-risk migration" />
+              <PathRow path="2B" scenario="Hybrid" phase1="26 migrate+API" phase2="50 automation" reduction="80-90% work reduction" bestFor="⭐ Same UI, full automation" highlight />
             </tbody>
           </table>
         </div>
@@ -697,14 +697,13 @@ function ExecutiveSection() {
 function ScenarioASection({ expandedSections, toggleSection }: { expandedSections: Record<string, boolean>, toggleSection: (section: string) => void }) {
   const requirementGroups = [
     { id: 'chem', title: 'Chemical Registration & Management', reqs: '1-8', data: requirementsData.slice(0, 8), icon: Database },
-    { id: 'upload', title: 'Data Upload & Processing', reqs: '9-16', data: requirementsData.slice(8, 16), icon: Cloud },
-    { id: 'search', title: 'Search & Data Discovery', reqs: '17-23', data: requirementsData.slice(16, 23), icon: Target },
-    { id: 'sample', title: 'Sample Management', reqs: '24-31', data: requirementsData.slice(23, 31), icon: Users },
-    { id: 'regulatory', title: 'Regulatory & Compliance', reqs: '32-38', data: requirementsData.slice(31, 38), icon: Shield },
-    { id: 'ux', title: 'User Experience', reqs: '39-45', data: requirementsData.slice(38, 45), icon: Lightbulb },
-    { id: 'collab', title: 'Collaboration & Audit', reqs: '46-51', data: requirementsData.slice(45, 51), icon: Users },
-    { id: 'perf', title: 'Performance & Security', reqs: '52-67', data: requirementsData.slice(51, 67), icon: Zap },
-    { id: 'transform', title: 'Data Transformation Scripts', reqs: '68-75', data: requirementsData.slice(67, 75), icon: RefreshCw },
+    { id: 'upload', title: 'Data Upload & Processing', reqs: '9-16B', data: requirementsData.slice(8, 24), icon: Cloud },
+    { id: 'search', title: 'Search & Data Discovery', reqs: '17-23', data: requirementsData.slice(24, 31), icon: Target },
+    { id: 'sample', title: 'Sample Management', reqs: '24-31', data: requirementsData.slice(31, 39), icon: Users },
+    { id: 'regulatory', title: 'Regulatory & Compliance', reqs: '32-38', data: requirementsData.slice(39, 46), icon: Shield },
+    { id: 'ux', title: 'User Experience', reqs: '39-45', data: requirementsData.slice(46, 53), icon: Lightbulb },
+    { id: 'collab', title: 'Collaboration & Audit', reqs: '46-51', data: requirementsData.slice(53, 59), icon: Users },
+    { id: 'perf', title: 'Performance & Security', reqs: '52-67', data: requirementsData.slice(59, 75), icon: Zap },
   ];
 
   return (
@@ -715,14 +714,14 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       </div>
 
       <div className="grid md:grid-cols-3 gap-4">
-        <StatCard label="Total Requirements" value="150" color="blue" />
-        <StatCard label="Phase 1 (Core+Transform)" value="75" color="green" />
-        <StatCard label="Phase 2 (ML+Auto)" value="75" color="purple" />
+        <StatCard label="Total Requirements" value="107" color="blue" />
+        <StatCard label="Phase 1 (Core)" value="67" color="green" />
+        <StatCard label="Phase 2 (ML+Platform)" value="40" color="purple" />
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Phase 1: Core System Build + Transformation (Requirements 1-75)</h3>
-        <p className="text-slate-700 mb-4">75 requirements covering essential functionality plus standardized data transformation scripts.</p>
+        <h3 className="text-xl font-bold text-slate-900 mb-3">Phase 1: Core System Build (Requirements 1-67)</h3>
+        <p className="text-slate-700 mb-4">67 requirements covering all essential functionality with manual data uploads.</p>
         <div className="space-y-2">
           {requirementGroups.map(group => (
             <RequirementGroupWithTable key={group.id} {...group} expanded={expandedSections[group.id]} toggle={() => toggleSection(group.id)} />
@@ -733,63 +732,36 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: ML + Automation Enhancement (OPTIONAL - Requirements 76-150)
+          Phase 2: ML + Platform Independence (OPTIONAL - Requirements 144-182 + 154A)
         </h3>
-        <p className="text-slate-700 mb-4">75 additional requirements for ML-powered identification and full automation capabilities.</p>
+        <p className="text-slate-700 mb-4">40 additional requirements for ML-powered unknown identification and vendor independence.</p>
         <div className="space-y-2">
           <RequirementGroupWithTable
             id="ml"
-            title="ML-Powered Identification"
-            reqs="76-93"
-            data={requirementsData.slice(75, 93)}
+            title="Unknown Compound Identification (ML)"
+            reqs="144-162 + 154A"
+            data={requirementsData.slice(143, 162)}
             icon={Zap}
             expanded={expandedSections['ml']}
             toggle={() => toggleSection('ml')}
           />
           <RequirementGroupWithTable
-            id="datacatalog"
-            title="Data Catalog & Discovery"
-            reqs="94-99"
-            data={requirementsData.slice(93, 99)}
-            icon={FolderSearch}
-            expanded={expandedSections['datacatalog']}
-            toggle={() => toggleSection('datacatalog')}
+            id="smiles"
+            title="SMILES Structural Data Completion"
+            reqs="163-172"
+            data={requirementsData.slice(162, 172)}
+            icon={Database}
+            expanded={expandedSections['smiles']}
+            toggle={() => toggleSection('smiles')}
           />
           <RequirementGroupWithTable
-            id="etl"
-            title="ETL Orchestration"
-            reqs="100-109"
-            data={requirementsData.slice(99, 109)}
-            icon={Workflow}
-            expanded={expandedSections['etl']}
-            toggle={() => toggleSection('etl')}
-          />
-          <RequirementGroupWithTable
-            id="pipelines"
-            title="Automated Pipelines"
-            reqs="110-124"
-            data={requirementsData.slice(109, 124)}
-            icon={Activity}
-            expanded={expandedSections['pipelines']}
-            toggle={() => toggleSection('pipelines')}
-          />
-          <RequirementGroupWithTable
-            id="streamlit"
-            title="Embedded Streamlit UI"
-            reqs="125-139"
-            data={requirementsData.slice(124, 139)}
-            icon={Gauge}
-            expanded={expandedSections['streamlit']}
-            toggle={() => toggleSection('streamlit')}
-          />
-          <RequirementGroupWithTable
-            id="bi"
-            title="BI & Reporting"
-            reqs="140-150"
-            data={requirementsData.slice(139, 150)}
-            icon={BarChart3}
-            expanded={expandedSections['bi']}
-            toggle={() => toggleSection('bi')}
+            id="platform"
+            title="Platform Independence & Vendor Mitigation"
+            reqs="173-182"
+            data={requirementsData.slice(172, 182)}
+            icon={Shield}
+            expanded={expandedSections['platform']}
+            toggle={() => toggleSection('platform')}
           />
         </div>
       </div>
@@ -806,18 +778,18 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
       </div>
 
       <div className="grid md:grid-cols-4 gap-4">
-        <StatCard label="Total Requirements" value="109" color="blue" />
-        <StatCard label="Phase 1 (Migrate+ML)" value="34" color="green" />
-        <StatCard label="Phase 2 (Auto)" value="75" color="purple" />
-        <StatCard label="Data Usability Gain" value="30%→95%" color="red" />
+        <StatCard label="Total Requirements" value="76" color="blue" />
+        <StatCard label="Phase 1 (Migrate+API)" value="26" color="green" />
+        <StatCard label="Phase 2 (Automation)" value="50" color="purple" />
+        <StatCard label="User Impact" value="Zero" color="red" />
       </div>
 
       <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Database className="w-6 h-6 mr-2 text-cyan-600" />
-          Phase 1: Migration + ML + Transformation (34 requirements)
+          Phase 1: Database Migration + API Layer (26 requirements)
         </h3>
-        <p className="text-slate-700 mb-4">Migrate to Snowflake, deploy ML for unknown compound identification, standardize data transformations, complete SMILES data - all while keeping UI unchanged.</p>
+        <p className="text-slate-700 mb-4">Migrate to Snowflake and build API middleware layer - all while keeping Dotmatics UI completely unchanged.</p>
 
         <div className="space-y-2">
           <RequirementGroupWithTable
@@ -874,19 +846,10 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: ML + Automation Enhancement (OPTIONAL - Requirements 76-150)
+          Phase 2: Data Automation Enhancement (OPTIONAL - Requirements 94-143)
         </h3>
-        <p className="text-slate-700 mb-4">Same 75 ML and automation requirements as Scenario A. Streamlit forms embedded as iframe popup in Dotmatics UI.</p>
+        <p className="text-slate-700 mb-4">50 automation requirements. Streamlit forms embedded as iframe popup in Dotmatics UI.</p>
         <div className="space-y-2">
-          <RequirementGroupWithTable
-            id="ml-b"
-            title="ML-Powered Identification"
-            reqs="76-93"
-            data={requirementsData.slice(75, 93)}
-            icon={Zap}
-            expanded={expandedSections['ml-b']}
-            toggle={() => toggleSection('ml-b')}
-          />
           <RequirementGroupWithTable
             id="datacatalog-b"
             title="Data Catalog & Discovery"
@@ -926,8 +889,8 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           <RequirementGroupWithTable
             id="bi-b"
             title="BI & Reporting"
-            reqs="140-150"
-            data={requirementsData.slice(139, 150)}
+            reqs="140-143"
+            data={requirementsData.slice(139, 143)}
             icon={BarChart3}
             expanded={expandedSections['bi-b']}
             toggle={() => toggleSection('bi-b')}
