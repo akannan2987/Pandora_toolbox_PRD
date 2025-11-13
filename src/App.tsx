@@ -653,10 +653,10 @@ function ExecutiveSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
-              <PathRow path="1A" scenario="Build New" phase1="67 core" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
+              <PathRow path="1A" scenario="Build New" phase1="75 core+transform" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
               <PathRow path="1B" scenario="Build New" phase1="75 core+transform" phase2="75 ML+auto" reduction="Data usability: 30%→95%" bestFor="Complete modernization" />
-              <PathRow path="2A" scenario="Hybrid" phase1="59 migrate+ML+transform" phase2="Skip" reduction="Usability: 30%→80%" bestFor="Foundation with ML" />
-              <PathRow path="2B" scenario="Hybrid" phase1="59 migrate+ML+transform" phase2="50 full auto" reduction="Usability: 30%→95%+" bestFor="⭐ Same UI, full intelligence" highlight />
+              <PathRow path="2A" scenario="Hybrid" phase1="34 migrate+ML+transform" phase2="Skip" reduction="Usability: 30%→80%" bestFor="Foundation with ML" />
+              <PathRow path="2B" scenario="Hybrid" phase1="34 migrate+ML+transform" phase2="75 full auto" reduction="Usability: 30%→95%+" bestFor="⭐ Same UI, full intelligence" highlight />
             </tbody>
           </table>
         </div>
@@ -704,6 +704,7 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
     { id: 'ux', title: 'User Experience', reqs: '39-45', data: requirementsData.slice(38, 45), icon: Lightbulb },
     { id: 'collab', title: 'Collaboration & Audit', reqs: '46-51', data: requirementsData.slice(45, 51), icon: Users },
     { id: 'perf', title: 'Performance & Security', reqs: '52-67', data: requirementsData.slice(51, 67), icon: Zap },
+    { id: 'transform', title: 'Data Transformation Scripts', reqs: '68-75', data: requirementsData.slice(67, 75), icon: RefreshCw },
   ];
 
   return (
@@ -720,8 +721,8 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h3 className="text-xl font-bold text-slate-900 mb-3">Phase 1: Core System Build (Requirements 1-67)</h3>
-        <p className="text-slate-700 mb-4">67 requirements covering all essential functionality with manual data uploads as the default entry method.</p>
+        <h3 className="text-xl font-bold text-slate-900 mb-3">Phase 1: Core System Build + Transformation (Requirements 1-75)</h3>
+        <p className="text-slate-700 mb-4">75 requirements covering essential functionality plus standardized data transformation scripts.</p>
         <div className="space-y-2">
           {requirementGroups.map(group => (
             <RequirementGroupWithTable key={group.id} {...group} expanded={expandedSections[group.id]} toggle={() => toggleSection(group.id)} />
@@ -732,15 +733,24 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: Data Automation Enhancement (OPTIONAL - Requirements 94-143)
+          Phase 2: ML + Automation Enhancement (OPTIONAL - Requirements 76-150)
         </h3>
-        <p className="text-slate-700 mb-4">50 additional requirements that automate 80-90% of manual data uploads.</p>
+        <p className="text-slate-700 mb-4">75 additional requirements for ML-powered identification and full automation capabilities.</p>
         <div className="space-y-2">
+          <RequirementGroupWithTable
+            id="ml"
+            title="ML-Powered Identification"
+            reqs="76-93"
+            data={requirementsData.slice(75, 93)}
+            icon={Zap}
+            expanded={expandedSections['ml']}
+            toggle={() => toggleSection('ml')}
+          />
           <RequirementGroupWithTable
             id="datacatalog"
             title="Data Catalog & Discovery"
             reqs="94-99"
-            data={requirementsData.slice(67, 73)}
+            data={requirementsData.slice(93, 99)}
             icon={FolderSearch}
             expanded={expandedSections['datacatalog']}
             toggle={() => toggleSection('datacatalog')}
@@ -749,7 +759,7 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
             id="etl"
             title="ETL Orchestration"
             reqs="100-109"
-            data={requirementsData.slice(73, 83)}
+            data={requirementsData.slice(99, 109)}
             icon={Workflow}
             expanded={expandedSections['etl']}
             toggle={() => toggleSection('etl')}
@@ -758,7 +768,7 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
             id="pipelines"
             title="Automated Pipelines"
             reqs="110-124"
-            data={requirementsData.slice(83, 98)}
+            data={requirementsData.slice(109, 124)}
             icon={Activity}
             expanded={expandedSections['pipelines']}
             toggle={() => toggleSection('pipelines')}
@@ -767,7 +777,7 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
             id="streamlit"
             title="Embedded Streamlit UI"
             reqs="125-139"
-            data={requirementsData.slice(98, 113)}
+            data={requirementsData.slice(124, 139)}
             icon={Gauge}
             expanded={expandedSections['streamlit']}
             toggle={() => toggleSection('streamlit')}
@@ -775,8 +785,8 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
           <RequirementGroupWithTable
             id="bi"
             title="BI & Reporting"
-            reqs="140-143"
-            data={requirementsData.slice(113, 117)}
+            reqs="140-150"
+            data={requirementsData.slice(139, 150)}
             icon={BarChart3}
             expanded={expandedSections['bi']}
             toggle={() => toggleSection('bi')}
@@ -864,15 +874,24 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: Data Automation Enhancement (OPTIONAL - Requirements 94-143)
+          Phase 2: ML + Automation Enhancement (OPTIONAL - Requirements 76-150)
         </h3>
-        <p className="text-slate-700 mb-4">Same 50 automation requirements as Scenario A. Streamlit forms embedded as iframe popup in Dotmatics UI.</p>
+        <p className="text-slate-700 mb-4">Same 75 ML and automation requirements as Scenario A. Streamlit forms embedded as iframe popup in Dotmatics UI.</p>
         <div className="space-y-2">
+          <RequirementGroupWithTable
+            id="ml-b"
+            title="ML-Powered Identification"
+            reqs="76-93"
+            data={requirementsData.slice(75, 93)}
+            icon={Zap}
+            expanded={expandedSections['ml-b']}
+            toggle={() => toggleSection('ml-b')}
+          />
           <RequirementGroupWithTable
             id="datacatalog-b"
             title="Data Catalog & Discovery"
             reqs="94-99"
-            data={requirementsData.slice(67, 73)}
+            data={requirementsData.slice(93, 99)}
             icon={FolderSearch}
             expanded={expandedSections['datacatalog-b']}
             toggle={() => toggleSection('datacatalog-b')}
@@ -881,7 +900,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
             id="etl-b"
             title="ETL Orchestration"
             reqs="100-109"
-            data={requirementsData.slice(73, 83)}
+            data={requirementsData.slice(99, 109)}
             icon={Workflow}
             expanded={expandedSections['etl-b']}
             toggle={() => toggleSection('etl-b')}
@@ -890,7 +909,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
             id="pipelines-b"
             title="Automated Pipelines"
             reqs="110-124"
-            data={requirementsData.slice(83, 98)}
+            data={requirementsData.slice(109, 124)}
             icon={Activity}
             expanded={expandedSections['pipelines-b']}
             toggle={() => toggleSection('pipelines-b')}
@@ -899,7 +918,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
             id="streamlit-b"
             title="Embedded Streamlit UI"
             reqs="125-139"
-            data={requirementsData.slice(98, 113)}
+            data={requirementsData.slice(124, 139)}
             icon={Gauge}
             expanded={expandedSections['streamlit-b']}
             toggle={() => toggleSection('streamlit-b')}
@@ -907,8 +926,8 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           <RequirementGroupWithTable
             id="bi-b"
             title="BI & Reporting"
-            reqs="140-143"
-            data={requirementsData.slice(113, 117)}
+            reqs="140-150"
+            data={requirementsData.slice(139, 150)}
             icon={BarChart3}
             expanded={expandedSections['bi-b']}
             toggle={() => toggleSection('bi-b')}
