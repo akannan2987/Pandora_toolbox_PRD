@@ -183,8 +183,8 @@ function FlowchartSection() {
 
     switch(path) {
       case '1A':
-        requirements = requirementsData.slice(0, 67);
-        title = 'Path 1A: Phase 1 Core System Build (67 Requirements)';
+        requirements = requirementsData.slice(0, 75);
+        title = 'Path 1A: Phase 1 Core + Transformation (75 Requirements)';
         break;
       case '1B':
         requirements = requirementsData.slice(0, 75);
@@ -431,15 +431,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 1A</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">67 Req</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">75 Req</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1:</strong> Core System Build
+                  <strong>Phase 1:</strong> Core + Transformation
                 </div>
-                <div className="text-xs text-slate-600">Manual uploads • Modern UI</div>
+                <div className="text-xs text-slate-600">New system • Standardized transforms</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-slate-500">Work Reduction: 0%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Speed-to-market</div>
+                  <div className="text-xs text-slate-500">Manual baseline</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Core system only</div>
                 </div>
               </div>
 
