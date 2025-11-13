@@ -13,8 +13,8 @@ function App() {
 
   const navigation = [
     { id: 'overview', name: 'Overview', icon: FileText },
-    { id: 'flowchart', name: 'Implementation Flow', icon: GitBranch },
     { id: 'executive', name: 'Executive Summary', icon: Target },
+    { id: 'flowchart', name: 'Implementation Flow', icon: GitBranch },
     { id: 'scenarioA', name: 'Scenario A', icon: Lightbulb },
     { id: 'scenarioB', name: 'Scenario B', icon: Database },
     { id: 'metrics', name: 'Success Metrics', icon: TrendingUp },
