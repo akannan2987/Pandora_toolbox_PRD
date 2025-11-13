@@ -102,9 +102,9 @@ function OverviewSection() {
       <div>
         <h2 className="text-3xl font-bold text-slate-900 mb-2">Document Overview</h2>
         <div className="flex flex-wrap gap-2 mt-4">
-          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Version 1.0 Draft</span>
-          <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">November 3, 2025</span>
-          <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Stream 3</span>
+          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Version 21.0 FINAL</span>
+          <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">November 13, 2025</span>
+          <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">6 Pain Points Addressed</span>
         </div>
       </div>
 
@@ -114,35 +114,47 @@ function OverviewSection() {
           Project Summary
         </h3>
         <p className="text-slate-700 leading-relaxed mb-4">
-          This PRD contains <span className="font-bold text-blue-600">143 consolidated, non-redundant requirements</span> organized across two strategic scenarios, each with optional phases.
+          This PRD contains <span className="font-bold text-blue-600">190 consolidated requirements</span> organized across two strategic scenarios, addressing 6 critical pain points with complete workflows and current process documentation.
         </p>
+        <div className="mt-4 grid grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-lg border border-blue-200">
+            <p className="text-sm text-slate-600 mb-1">Current System</p>
+            <p className="text-2xl font-bold text-slate-900">12,561</p>
+            <p className="text-xs text-slate-500">Total Chemicals Registered</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border border-red-200">
+            <p className="text-sm text-slate-600 mb-1">Critical Issue</p>
+            <p className="text-2xl font-bold text-red-600">70%</p>
+            <p className="text-xs text-slate-500">Screening Data Unusable</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <ScenarioCard
           title="Scenario A: Complete Replacement"
-          subtitle="117 requirements (67 + 50)"
+          subtitle="150 requirements (75 + 75)"
           icon={Lightbulb}
           color="from-amber-500 to-orange-500"
-          description="Build entirely new system from scratch with modern technology"
+          description="Build entirely new system with modern technology and ML intelligence"
           features={[
-            'Phase 1: Core System Build (67 requirements)',
-            'Phase 2: Data Automation (50 requirements - OPTIONAL)',
-            'Manual uploads as default in Phase 1',
-            '80-90% reduction in manual work with Phase 2'
+            'Phase 1: Core + Transformation (75 requirements)',
+            'Phase 2: ML + Full Automation (75 requirements)',
+            'Includes 8 new data transformation requirements',
+            'Automated unknown compound identification (ML)'
           ]}
         />
         <ScenarioCard
-          title="Scenario B: Hybrid Approach"
-          subtitle="76 requirements (26 + 50)"
+          title="Scenario B: Hybrid Approach (RECOMMENDED)"
+          subtitle="109 requirements (34 + 75)"
           icon={Database}
           color="from-blue-500 to-cyan-500"
-          description="Keep Dotmatics UI, replace backend with Snowflake"
+          description="Keep Dotmatics UI, replace backend, add intelligence layer"
           features={[
-            'Phase 1: Database Migration (26 requirements)',
-            'Phase 2: Data Automation (50 requirements - OPTIONAL)',
+            'Phase 1: Migration + ML + Transformation (34 requirements)',
+            'Phase 2: Full Automation + Streaming (75 requirements)',
             'ZERO user impact - same familiar interface',
-            'Low risk, fast deployment'
+            'Solves 70% unknown compound crisis'
           ]}
         />
       </div>
@@ -151,9 +163,9 @@ function OverviewSection() {
         <div className="flex items-start">
           <AlertCircle className="w-6 h-6 text-amber-600 mt-1 mr-3 flex-shrink-0" />
           <div>
-            <h4 className="font-bold text-amber-900 mb-2">Shared Core Requirements</h4>
+            <h4 className="font-bold text-amber-900 mb-2">Critical Foundation</h4>
             <p className="text-amber-800">
-              <span className="font-semibold">Requirements 1-67</span> apply to ALL scenarios regardless of which path is chosen. These form the foundation of any implementation.
+              Core requirements address <span className="font-semibold">6 critical pain points</span> including unknown compound identification (70% of screening data unusable), data transformation standardization (40-60 hrs/year manual), and SMILES completion (49.5% missing).
             </p>
           </div>
         </div>
@@ -593,18 +605,37 @@ function ExecutiveSection() {
       <div className="bg-red-50 border border-red-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
           <AlertCircle className="w-6 h-6 mr-2 text-red-600" />
-          Problem Statement
+          Six Critical Pain Points
         </h3>
         <p className="text-slate-700 mb-4">
-          The current Pandora Toolbox (Dotmatics) system requires significant manual data uploads:
+          Pandora operates efficiently for routine tasks (17-33 hrs/year manual entry) but faces critical data quality and infrastructure challenges:
         </p>
-        <ul className="space-y-2">
-          <ProblemItem text="High operational burden (2-5 Admins spending 80% time uploading)" />
-          <ProblemItem text="Data quality issues (85% accuracy, 2-3% duplicates)" />
-          <ProblemItem text="Slow data availability (24+ hours old)" />
-          <ProblemItem text="Limited scalability (manual bottleneck)" />
-          <ProblemItem text="Vendor lock-in (Dotmatics dependent)" />
-        </ul>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
+            <h4 className="font-bold text-slate-900 mb-2">1. Manual Data Entry</h4>
+            <p className="text-sm text-slate-600">17-33 hours annually - well-controlled, NOT a major issue</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-red-600">
+            <h4 className="font-bold text-slate-900 mb-2">2. Unknown Compound Crisis</h4>
+            <p className="text-sm text-red-600 font-semibold">70% screening data unusable (4,126 unknowns)</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+            <h4 className="font-bold text-slate-900 mb-2">3. Incomplete SMILES Data</h4>
+            <p className="text-sm text-slate-600">49.5% chemicals lack structures (6,215 entries)</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-yellow-500">
+            <h4 className="font-bold text-slate-900 mb-2">4. Regulatory Integration</h4>
+            <p className="text-sm text-slate-600">2-4 week lag from change to system (9-15 hrs/year)</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+            <h4 className="font-bold text-slate-900 mb-2">5. Data Linking Quality</h4>
+            <p className="text-sm text-slate-600">5% link failures, minimal impact (1-2 hrs/year)</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-red-600">
+            <h4 className="font-bold text-slate-900 mb-2">6. Data Transformation Scripts</h4>
+            <p className="text-sm text-red-600 font-semibold">Manual, ad-hoc, inconsistent (40-60 hrs/year)</p>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -622,10 +653,10 @@ function ExecutiveSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
-              <PathRow path="1A" scenario="Build New" phase1="67 reqs (manual)" phase2="Skip" reduction="0% (baseline)" bestFor="Speed-to-market" />
-              <PathRow path="1B" scenario="Build New" phase1="67 reqs (manual)" phase2="Add 50 (auto)" reduction="80-90%" bestFor="Modern + labor savings" />
-              <PathRow path="2A" scenario="Hybrid" phase1="26 reqs (migrate)" phase2="Skip" reduction="0% (baseline)" bestFor="Low disruption" />
-              <PathRow path="2B" scenario="Hybrid" phase1="26 reqs (migrate)" phase2="Add 50 (auto)" reduction="80-90%" bestFor="⭐ Best of both worlds" highlight />
+              <PathRow path="1A" scenario="Build New" phase1="67 core" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
+              <PathRow path="1B" scenario="Build New" phase1="75 core+transform" phase2="75 ML+auto" reduction="Data usability: 30%→95%" bestFor="Complete modernization" />
+              <PathRow path="2A" scenario="Hybrid" phase1="59 migrate+ML+transform" phase2="Skip" reduction="Usability: 30%→80%" bestFor="Foundation with ML" />
+              <PathRow path="2B" scenario="Hybrid" phase1="59 migrate+ML+transform" phase2="50 full auto" reduction="Usability: 30%→95%+" bestFor="⭐ Same UI, full intelligence" highlight />
             </tbody>
           </table>
         </div>
@@ -637,12 +668,12 @@ function ExecutiveSection() {
           Key Outcomes (With Automation - Phase 2)
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          <OutcomeItem icon={Zap} text="Time savings: ? hours/week → 5 hours/week" />
-          <OutcomeItem icon={CheckCircle2} text="99% data accuracy (from 85%)" />
-          <OutcomeItem icon={TrendingUp} text="Real-time data (from 24 hours old)" />
-          <OutcomeItem icon={Shield} text="Zero duplicates with auto-detection" />
-          <OutcomeItem icon={Cloud} text="99.9% system uptime" />
-          <OutcomeItem icon={BarChart3} text="80-90% reduction in manual work" />
+          <OutcomeItem icon={Zap} text="Unknown identification: 10% → 90%+ (ML-powered)" />
+          <OutcomeItem icon={CheckCircle2} text="Data usability: 30% → 95%+ screening data" />
+          <OutcomeItem icon={TrendingUp} text="SMILES completion: 50.5% → 100%" />
+          <OutcomeItem icon={Shield} text="Transformation manual: 40-60 hrs/yr → 5-10 hrs/yr" />
+          <OutcomeItem icon={Cloud} text="Regulatory lag: 2-4 weeks → 1-2 hours" />
+          <OutcomeItem icon={BarChart3} text="Data transformation error rate: <1% (validated)" />
         </div>
       </div>
 
@@ -652,11 +683,11 @@ function ExecutiveSection() {
           Recommended Path: 2B (Hybrid + Automation)
         </h3>
         <div className="space-y-3 text-blue-50">
-          <RecommendationItem number="1" text="Phase 1 Low Risk: Keep Dotmatics UI (users see no change), migrate backend to Snowflake" />
-          <RecommendationItem number="2" text="Phase 1 Familiar: Users continue using interface they know" />
-          <RecommendationItem number="3" text="Phase 2 Optional: Can skip if complex, you've already won (better database)" />
-          <RecommendationItem number="4" text="Best ROI: Get infrastructure benefit + optional labor savings" />
-          <RecommendationItem number="5" text="Flexibility: Enable automation gradually as confidence builds" />
+          <RecommendationItem number="1" text="Phase 1 (Month 8): Migrate data, deploy ML identification, standardize transformations, preserve UI" />
+          <RecommendationItem number="2" text="Solves Critical Issue: 70% unknown compounds identified automatically via ML" />
+          <RecommendationItem number="3" text="Data Quality Foundation: Complete SMILES data + technique-specific transformation scripts" />
+          <RecommendationItem number="4" text="Phase 2 (Month 15): Real-time streaming, full automation, platform independence" />
+          <RecommendationItem number="5" text="Result: 30% useful data → 95%+ useful data with consistent quality assurance" />
         </div>
       </div>
     </div>
@@ -679,13 +710,13 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
     <div className="space-y-8 animate-slideUp">
       <div>
         <h2 className="text-3xl font-bold text-slate-900 mb-2">Scenario A: Complete Replacement</h2>
-        <p className="text-slate-600 text-lg">Build entirely new system from scratch with modern technology</p>
+        <p className="text-slate-600 text-lg">Build entirely new system with modern technology and ML intelligence capabilities</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-4">
-        <StatCard label="Total Requirements" value="117" color="blue" />
-        <StatCard label="Phase 1 (Core)" value="67" color="green" />
-        <StatCard label="Phase 2 (Auto)" value="50" color="purple" />
+        <StatCard label="Total Requirements" value="150" color="blue" />
+        <StatCard label="Phase 1 (Core+Transform)" value="75" color="green" />
+        <StatCard label="Phase 2 (ML+Auto)" value="75" color="purple" />
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
@@ -760,22 +791,23 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
   return (
     <div className="space-y-8 animate-slideUp">
       <div>
-        <h2 className="text-3xl font-bold text-slate-900 mb-2">Scenario B: Hybrid Approach</h2>
-        <p className="text-slate-600 text-lg">Keep Dotmatics UI, replace backend with Snowflake</p>
+        <h2 className="text-3xl font-bold text-slate-900 mb-2">Scenario B: Hybrid Approach (RECOMMENDED)</h2>
+        <p className="text-slate-600 text-lg">Keep Dotmatics UI, replace backend with Snowflake, add ML intelligence layer</p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        <StatCard label="Total Requirements" value="76" color="blue" />
-        <StatCard label="Phase 1 (Migrate)" value="26" color="green" />
-        <StatCard label="Phase 2 (Auto)" value="50" color="purple" />
+      <div className="grid md:grid-cols-4 gap-4">
+        <StatCard label="Total Requirements" value="109" color="blue" />
+        <StatCard label="Phase 1 (Migrate+ML)" value="34" color="green" />
+        <StatCard label="Phase 2 (Auto)" value="75" color="purple" />
+        <StatCard label="Data Usability Gain" value="30%→95%" color="red" />
       </div>
 
       <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Database className="w-6 h-6 mr-2 text-cyan-600" />
-          Phase 1: Database Migration (Requirements 68-93)
+          Phase 1: Migration + ML + Transformation (34 requirements)
         </h3>
-        <p className="text-slate-700 mb-4">Migrate Dotmatics database to Snowflake while keeping the UI completely unchanged.</p>
+        <p className="text-slate-700 mb-4">Migrate to Snowflake, deploy ML for unknown compound identification, standardize data transformations, complete SMILES data - all while keeping UI unchanged.</p>
 
         <div className="space-y-2">
           <RequirementGroupWithTable
@@ -897,44 +929,44 @@ function MetricsSection() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <MetricCard
-          title="Manual Upload Time"
-          target="5 hours/week"
-          measurement="Time tracking, staff surveys"
+          title="Unknown Identification Rate"
+          target="Current 10% → Phase 1: 80-90% → Phase 2: 90%+"
+          measurement="ML model accuracy tracking"
           icon={Zap}
           color="from-amber-500 to-orange-500"
         />
         <MetricCard
-          title="Data Accuracy"
-          target="99%"
-          measurement="Validation audits, error rates"
+          title="Data Usability"
+          target="Current 30% → Phase 1: 80% → Phase 2: 95%+"
+          measurement="Screening data linkage rate"
           icon={CheckCircle2}
           color="from-green-500 to-emerald-500"
         />
         <MetricCard
-          title="Duplicate Chemicals"
-          target="<0.1%"
-          measurement="Weekly audit reports"
+          title="SMILES Completeness"
+          target="Current 50.5% → Phase 1: 100%"
+          measurement="Chemical registry structure coverage"
           icon={AlertCircle}
           color="from-blue-500 to-cyan-500"
         />
         <MetricCard
-          title="Data Freshness"
-          target="Real-time to hourly"
-          measurement="Update timestamp tracking"
+          title="Transformation Manual Effort"
+          target="Current 40-60 hrs/yr → Phase 1: 15-20 → Phase 2: 5-10"
+          measurement="Time tracking per upload"
           icon={TrendingUp}
           color="from-purple-500 to-pink-500"
         />
         <MetricCard
-          title="System Uptime"
-          target="99.9%"
-          measurement="Monitoring dashboards"
+          title="Transformation Error Rate"
+          target="Current: High (manual) → Phase 1: <5% → Phase 2: <1%"
+          measurement="Validation audit results"
           icon={Shield}
           color="from-red-500 to-rose-500"
         />
         <MetricCard
-          title="User Satisfaction"
-          target=">4/5 stars"
-          measurement="Monthly surveys"
+          title="Technique-Specific Scripts"
+          target="Current: 0 → Phase 1: 3 (GC/LC/HS) → Phase 2: 5+"
+          measurement="Script repository count"
           icon={Users}
           color="from-cyan-500 to-blue-500"
         />
