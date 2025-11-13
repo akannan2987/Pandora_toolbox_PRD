@@ -184,19 +184,19 @@ function FlowchartSection() {
     switch(path) {
       case '1A':
         requirements = requirementsData.slice(0, 67);
-        title = 'Path 1A: Phase 1 Core System Build (Requirements 1-67)';
+        title = 'Path 1A: Phase 1 Core System Build (67 Requirements)';
         break;
       case '1B':
-        requirements = requirementsData.slice(93, 143);
-        title = 'Path 1B: Phase 2 Data Automation Enhancement (Requirements 94-143)';
+        requirements = requirementsData.slice(0, 75);
+        title = 'Path 1B: Phase 1+2 Complete Build (150 Requirements Total - 75 Phase 1 + 75 Phase 2)';
         break;
       case '2A':
         requirements = requirementsData.slice(67, 93);
-        title = 'Path 2A: Phase 1 Database Migration (Requirements 68-93)';
+        title = 'Path 2A: Phase 1 Migration + ML + Transformation (34 Requirements)';
         break;
       case '2B':
-        requirements = requirementsData.slice(93, 143);
-        title = 'Path 2B: Phase 2 Data Automation Enhancement (Requirements 94-143)';
+        requirements = requirementsData.slice(67, 93);
+        title = 'Path 2B: Phase 1+2 Hybrid Complete (109 Requirements Total - 34 Phase 1 + 75 Phase 2)';
         break;
     }
 
@@ -362,7 +362,7 @@ function FlowchartSection() {
             <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-8 py-4 rounded-xl shadow-lg text-center">
               <div className="text-sm font-medium mb-1">Current State</div>
               <div className="text-xl font-bold">Pandora Toolbox (Dotmatics)</div>
-              <div className="text-sm mt-1">Manual uploads, tedious process and error prone</div>
+              <div className="text-sm mt-1">70% screening data unusable • Manual transformations • 12,561 chemicals</div>
             </div>
           </div>
 
@@ -414,7 +414,7 @@ function FlowchartSection() {
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
                   <div className="font-bold">Scenario A</div>
                   <div className="text-sm">Complete Replacement</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 117 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 150 Req</div>
                 </div>
               </div>
 
@@ -456,15 +456,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 1B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">50 Req</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">150 Req (75+75)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Core + Automation
+                  <strong>Phase 1 + 2:</strong> Core + Transform + ML
                 </div>
-                <div className="text-xs text-slate-600">Automated pipelines • Real-time</div>
+                <div className="text-xs text-slate-600">ML identification • Standardized transforms</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Work Reduction: 80-90%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Modern + labor savings</div>
+                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→95%</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Complete modernization</div>
                 </div>
               </div>
             </div>
@@ -475,7 +475,7 @@ function FlowchartSection() {
                 <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
                   <div className="font-bold">Scenario B</div>
                   <div className="text-sm">Hybrid Approach</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 76 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 109 Req</div>
                 </div>
               </div>
 
@@ -492,15 +492,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2A</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">26 Req</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">34 Req</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1:</strong> Database Migration
+                  <strong>Phase 1:</strong> Migration + ML + Transform
                 </div>
-                <div className="text-xs text-slate-600">Keep Dotmatics UI • Snowflake DB</div>
+                <div className="text-xs text-slate-600">Keep UI • ML identification • Transforms</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-slate-500">Work Reduction: 0%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Low disruption</div>
+                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→80%</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Foundation with ML</div>
                 </div>
               </div>
 
@@ -520,15 +520,15 @@ function FlowchartSection() {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">50 Req</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">109 Req (34+75)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Migration + Automation
+                  <strong>Phase 1 + 2:</strong> Full Intelligence
                 </div>
-                <div className="text-xs text-slate-600">Same UI • Automated • Real-time</div>
+                <div className="text-xs text-slate-600">Same UI • ML • Full automation • Real-time</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Work Reduction: 80-90%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Best of both worlds</div>
+                  <div className="text-xs text-green-600 font-bold">Data usability: 30%→95%+</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Same UI, full intelligence</div>
                 </div>
               </div>
             </div>
