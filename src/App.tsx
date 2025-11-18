@@ -350,7 +350,7 @@ function OverviewSection() {
           <div>
             <h4 className="font-bold text-amber-900 mb-2">Critical Foundation</h4>
             <p className="text-amber-800">
-              Core requirements address <span className="font-semibold">6 critical pain points</span> including unknown compound identification (70% of screening data unusable), data transformation standardization (40-60 hrs/year manual), and SMILES completion (49.5% missing).
+              Core requirements address <span className="font-semibold">7 operational challenges</span> including data transformation standardization (🟥 40-60 hrs/year manual), data architecture/ontology framework (🟥 no formal model), SMILES completion (🟧 49.5% missing), regulatory lag (🟧 2-4 weeks), and unknown compound identification (🟨 70% unusable, 2,625 hr backlog).
             </p>
           </div>
         </div>
