@@ -102,7 +102,7 @@ function OverviewSection() {
       <div>
         <h2 className="text-3xl font-bold text-slate-900 mb-2">Document Overview</h2>
         <div className="flex flex-wrap gap-2 mt-4">
-          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Version 21.0 FINAL</span>
+          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Draft 1</span>
           <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">November 13, 2025</span>
           <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">6 Pain Points Addressed</span>
         </div>
