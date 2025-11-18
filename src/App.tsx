@@ -114,7 +114,7 @@ function OverviewSection() {
           Project Summary
         </h3>
         <p className="text-slate-700 leading-relaxed mb-4">
-          This PRD contains <span className="font-bold text-blue-600">190 consolidated requirements</span> organized across two strategic scenarios, addressing 6 critical pain points with complete workflows and current process documentation.
+          This PRD contains <span className="font-bold text-blue-600">190 consolidated requirements</span> organized across two strategic scenarios, addressing 7 pain points with complete workflows and current process documentation.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded-lg border border-blue-200">
