@@ -347,11 +347,33 @@ function OverviewSection() {
       <div className="bg-amber-50 border-l-4 border-amber-500 rounded-lg p-6">
         <div className="flex items-start">
           <AlertCircle className="w-6 h-6 text-amber-600 mt-1 mr-3 flex-shrink-0" />
-          <div>
-            <h4 className="font-bold text-amber-900 mb-2">Critical Foundation</h4>
-            <p className="text-amber-800">
-              Core requirements address <span className="font-semibold">7 operational challenges</span> including data transformation standardization (🟥 40-60 hrs/year manual), data architecture/ontology framework (🟥 no formal model), SMILES completion (🟧 49.5% missing), regulatory lag (🟧 2-4 weeks), and unknown compound identification (🟨 70% unusable, 2,625 hr backlog).
+          <div className="flex-1">
+            <h4 className="font-bold text-amber-900 mb-3">Critical Foundation</h4>
+            <p className="text-amber-800 mb-3">
+              Core requirements address <span className="font-semibold">7 operational challenges</span>:
             </p>
+            <ul className="space-y-2 text-amber-800 text-sm">
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">🟥</span>
+                <span><span className="font-semibold">Data Transformation:</span> 40-60 hrs/year manual processes</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">🟥</span>
+                <span><span className="font-semibold">Data Architecture/Ontology:</span> No formal model exists</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">🟧</span>
+                <span><span className="font-semibold">SMILES Completion:</span> 49.5% missing structural data</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">🟧</span>
+                <span><span className="font-semibold">Regulatory Lag:</span> 2-4 weeks delay in updates</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">🟨</span>
+                <span><span className="font-semibold">Unknown Compounds:</span> 70% unusable (2,625 hr backlog)</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
