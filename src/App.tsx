@@ -318,28 +318,28 @@ function OverviewSection() {
       <div className="grid md:grid-cols-2 gap-6">
         <ScenarioCard
           title="Scenario A: Complete Replacement"
-          subtitle="150 requirements (75 + 75)"
+          subtitle="166 requirements (67 + 99)"
           icon={Lightbulb}
           color="from-amber-500 to-orange-500"
-          description="Build entirely new system with modern technology"
+          description="Build entirely new system with modern technology and ML intelligence"
           features={[
-            'Phase 1: Core system + transformation framework (75 requirements)',
-            'Phase 2: ML intelligence + full automation (75 requirements)',
-            'Timeline: 6-9 months per phase',
-            'Best for: Complete modernization with full control'
+            'Phase 1: Core + Transformation (67 requirements)',
+            'Phase 2: ML + Full Automation (99 requirements)',
+            'Includes 8 new data transformation requirements',
+            'Automated unknown compound identification (ML)'
           ]}
         />
         <ScenarioCard
           title="Scenario B: Hybrid Approach (RECOMMENDED)"
-          subtitle="109 requirements (34 + 75)"
+          subtitle="182 requirements (122 + 60)"
           icon={Database}
           color="from-blue-500 to-cyan-500"
           description="Keep Dotmatics UI, replace backend, add intelligence layer"
           features={[
-            'Phase 1: Migration + ML + transformation (34 requirements)',
-            'Phase 2: Full automation + real-time streaming (75 requirements)',
+            'Phase 1: Migration + ML + Transformation (122 requirements)',
+            'Phase 2: Full Automation + Streaming (60 requirements)',
             'ZERO user impact - same familiar interface',
-            'Timeline: Month 8 (Phase 1), Month 15 (Phase 2)'
+            'Solves 70% unknown compound crisis'
           ]}
         />
       </div>
