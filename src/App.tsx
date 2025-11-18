@@ -1630,9 +1630,9 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       </div>
 
       <div className="grid md:grid-cols-3 gap-4">
-        <StatCard label="Total Requirements" value="107" color="blue" />
+        <StatCard label="Total Requirements" value="166" color="blue" />
         <StatCard label="Phase 1 (Core)" value="67" color="green" />
-        <StatCard label="Phase 2 (ML+Platform)" value="40" color="purple" />
+        <StatCard label="Phase 2 (Advanced)" value="99" color="purple" />
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
@@ -1648,36 +1648,85 @@ function ScenarioASection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: ML + Platform Independence (OPTIONAL - Requirements 144-182 + 154A)
+          Phase 2: Advanced Features (OPTIONAL - Requirements 94-182 + 154A)
         </h3>
-        <p className="text-slate-700 mb-4">40 additional requirements for ML-powered unknown identification and vendor independence.</p>
+        <p className="text-slate-700 mb-4">99 additional requirements for BI dashboards, ML intelligence, SMILES completion, and platform independence.</p>
+        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+          <h4 className="font-semibold text-blue-900 mb-2">Phase 2 Includes:</h4>
+          <ul className="space-y-1 text-sm text-slate-700">
+            <li>• <strong>Data Catalog & Discovery (Req 94-99):</strong> 6 requirements</li>
+            <li>• <strong>ETL Orchestration (Req 100-109):</strong> 10 requirements</li>
+            <li>• <strong>Automated Pipelines (Req 110-124):</strong> 15 requirements</li>
+            <li>• <strong>BI Dashboards (Req 125-143):</strong> 19 requirements</li>
+            <li>• <strong>ML Unknown Identification (Req 144-162 + 154A):</strong> 19 requirements</li>
+            <li>• <strong>SMILES Completion (Req 163-172):</strong> 10 requirements</li>
+            <li>• <strong>Platform Independence (Req 173-182):</strong> 10 requirements</li>
+            <li className="font-semibold text-blue-900 mt-2">• Total: 99 requirements</li>
+          </ul>
+        </div>
         <div className="space-y-2">
           <RequirementGroupWithTable
-            id="ml"
+            id="datacatalog-a"
+            title="Data Catalog & Discovery"
+            reqs="94-99"
+            data={requirementsData.slice(93, 99)}
+            icon={FolderSearch}
+            expanded={expandedSections['datacatalog-a']}
+            toggle={() => toggleSection('datacatalog-a')}
+          />
+          <RequirementGroupWithTable
+            id="etl-a"
+            title="ETL Orchestration"
+            reqs="100-109"
+            data={requirementsData.slice(99, 109)}
+            icon={Workflow}
+            expanded={expandedSections['etl-a']}
+            toggle={() => toggleSection('etl-a')}
+          />
+          <RequirementGroupWithTable
+            id="pipelines-a"
+            title="Automated Pipelines"
+            reqs="110-124"
+            data={requirementsData.slice(109, 124)}
+            icon={Activity}
+            expanded={expandedSections['pipelines-a']}
+            toggle={() => toggleSection('pipelines-a')}
+          />
+          <RequirementGroupWithTable
+            id="bi-a"
+            title="BI & Advanced Dashboards"
+            reqs="125-143"
+            data={requirementsData.slice(124, 143)}
+            icon={BarChart3}
+            expanded={expandedSections['bi-a']}
+            toggle={() => toggleSection('bi-a')}
+          />
+          <RequirementGroupWithTable
+            id="ml-a"
             title="Unknown Compound Identification (ML)"
             reqs="144-162 + 154A"
             data={requirementsData.slice(143, 162)}
             icon={Zap}
-            expanded={expandedSections['ml']}
-            toggle={() => toggleSection('ml')}
+            expanded={expandedSections['ml-a']}
+            toggle={() => toggleSection('ml-a')}
           />
           <RequirementGroupWithTable
-            id="smiles"
+            id="smiles-a"
             title="SMILES Structural Data Completion"
             reqs="163-172"
             data={requirementsData.slice(162, 172)}
             icon={Database}
-            expanded={expandedSections['smiles']}
-            toggle={() => toggleSection('smiles')}
+            expanded={expandedSections['smiles-a']}
+            toggle={() => toggleSection('smiles-a')}
           />
           <RequirementGroupWithTable
-            id="platform"
+            id="platform-a"
             title="Platform Independence & Vendor Mitigation"
             reqs="173-182"
             data={requirementsData.slice(172, 182)}
             icon={Shield}
-            expanded={expandedSections['platform']}
-            toggle={() => toggleSection('platform')}
+            expanded={expandedSections['platform-a']}
+            toggle={() => toggleSection('platform-a')}
           />
         </div>
       </div>
@@ -1694,18 +1743,79 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
       </div>
 
       <div className="grid md:grid-cols-4 gap-4">
-        <StatCard label="Total Requirements" value="76" color="blue" />
-        <StatCard label="Phase 1 (Migrate+API)" value="26" color="green" />
-        <StatCard label="Phase 2 (Automation)" value="50" color="purple" />
+        <StatCard label="Total Requirements" value="182" color="blue" />
+        <StatCard label="Phase 1 (Foundation+ML)" value="122" color="green" />
+        <StatCard label="Phase 2 (Automation)" value="60" color="purple" />
         <StatCard label="User Impact" value="Zero" color="red" />
+      </div>
+
+      <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl p-6 mb-6">
+        <h3 className="text-xl font-bold text-amber-900 mb-3 flex items-center">
+          <AlertCircle className="w-6 h-6 mr-2" />
+          Key Difference from Scenario A
+        </h3>
+        <p className="text-slate-700 mb-3">
+          Unlike Scenario A which defers ML and SMILES to Phase 2, <strong>Scenario B includes these critical capabilities in Phase 1</strong>:
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white p-3 rounded-lg">
+            <h4 className="font-semibold text-slate-900 mb-2">Phase 1 (122 req):</h4>
+            <ul className="text-sm text-slate-700 space-y-1">
+              <li>• 67 Core requirements</li>
+              <li>• 26 Migration + API</li>
+              <li>• <strong className="text-green-600">19 ML Intelligence</strong></li>
+              <li>• <strong className="text-green-600">10 SMILES Completion</strong></li>
+            </ul>
+          </div>
+          <div className="bg-white p-3 rounded-lg">
+            <h4 className="font-semibold text-slate-900 mb-2">Result:</h4>
+            <ul className="text-sm text-slate-700 space-y-1">
+              <li>✓ Data Usability: 30% → <strong>80%</strong></li>
+              <li>✓ Unknown ID: 10% → <strong>70%</strong></li>
+              <li>✓ SMILES: 50.5% → <strong>100%</strong></li>
+              <li>✓ Same Dotmatics UI (zero training)</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Database className="w-6 h-6 mr-2 text-cyan-600" />
-          Phase 1: Database Migration + API Layer (26 requirements)
+          Phase 1: Foundation + Intelligence (122 requirements)
         </h3>
-        <p className="text-slate-700 mb-4">Migrate to Snowflake and build API middleware layer - all while keeping Dotmatics UI completely unchanged.</p>
+        <p className="text-slate-700 mb-4">
+          Complete foundation including core system (67), migration + API (26), ML intelligence (19), SMILES completion (10), and data transformation standardization - all while keeping Dotmatics UI unchanged.
+        </p>
+        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+          <h4 className="font-semibold text-blue-900 mb-2">Phase 1 Breakdown (122 Requirements):</h4>
+          <div className="grid md:grid-cols-2 gap-3">
+            <div>
+              <p className="text-sm font-semibold text-slate-900 mb-1">Core System (67):</p>
+              <ul className="text-xs text-slate-700 space-y-0.5">
+                <li>• Chemical Registration (Req 1-8)</li>
+                <li>• Data Upload & Transformation (Req 9-16B)</li>
+                <li>• Search & Discovery (Req 17-23)</li>
+                <li>• Sample Management (Req 24-31)</li>
+                <li>• Regulatory & Compliance (Req 32-38)</li>
+                <li>• User Experience (Req 39-45)</li>
+                <li>• Collaboration & Audit (Req 46-51)</li>
+                <li>• Performance & Security (Req 52-67)</li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-900 mb-1">Hybrid Components (55):</p>
+              <ul className="text-xs text-slate-700 space-y-0.5">
+                <li>• Data Mapping & Migration (Req 68-73) - 6</li>
+                <li>• Snowflake Optimization (Req 74-79) - 6</li>
+                <li>• API Layer Development (Req 80-85) - 6</li>
+                <li>• Dotmatics UI Integration (Req 86-93) - 8</li>
+                <li>• <strong className="text-green-600">ML Intelligence (Req 144-162) - 19</strong></li>
+                <li>• <strong className="text-green-600">SMILES Completion (Req 163-172) - 10</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-2">
           <RequirementGroupWithTable
@@ -1762,9 +1872,22 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-purple-600" />
-          Phase 2: Data Automation Enhancement (OPTIONAL - Requirements 94-143)
+          Phase 2: Advanced Automation (OPTIONAL - Requirements 94-143 + 173-182)
         </h3>
-        <p className="text-slate-700 mb-4">50 automation requirements. Streamlit forms embedded as iframe popup in Dotmatics UI.</p>
+        <p className="text-slate-700 mb-4">
+          60 advanced requirements for real-time ETL, BI dashboards, ML enhancement, and platform independence. Streamlit forms embedded as iframe popup in Dotmatics UI.
+        </p>
+        <div className="bg-purple-100 p-4 rounded-lg mb-4">
+          <h4 className="font-semibold text-purple-900 mb-2">Phase 2 Includes (60 Requirements):</h4>
+          <ul className="space-y-1 text-sm text-slate-700">
+            <li>• <strong>Data Catalog & Discovery (Req 94-99):</strong> 6 requirements</li>
+            <li>• <strong>ETL Orchestration (Req 100-109):</strong> 10 requirements - Real-time pipelines</li>
+            <li>• <strong>Automated Pipelines (Req 110-124):</strong> 15 requirements - Streaming data</li>
+            <li>• <strong>Embedded Streamlit UI (Req 125-139):</strong> 15 requirements - Interactive dashboards</li>
+            <li>• <strong>BI & Reporting (Req 140-143):</strong> 4 requirements - Advanced analytics</li>
+            <li>• <strong>Platform Independence (Req 173-182):</strong> 10 requirements - Vendor flexibility</li>
+          </ul>
+        </div>
         <div className="space-y-2">
           <RequirementGroupWithTable
             id="datacatalog-b"
@@ -1777,7 +1900,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           />
           <RequirementGroupWithTable
             id="etl-b"
-            title="ETL Orchestration"
+            title="ETL Orchestration (Real-time)"
             reqs="100-109"
             data={requirementsData.slice(99, 109)}
             icon={Workflow}
@@ -1786,7 +1909,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           />
           <RequirementGroupWithTable
             id="pipelines-b"
-            title="Automated Pipelines"
+            title="Automated Pipelines (Streaming)"
             reqs="110-124"
             data={requirementsData.slice(109, 124)}
             icon={Activity}
@@ -1795,7 +1918,7 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           />
           <RequirementGroupWithTable
             id="streamlit-b"
-            title="Embedded Streamlit UI"
+            title="Embedded Streamlit UI (Interactive)"
             reqs="125-139"
             data={requirementsData.slice(124, 139)}
             icon={Gauge}
@@ -1804,13 +1927,54 @@ function ScenarioBSection({ expandedSections, toggleSection }: { expandedSection
           />
           <RequirementGroupWithTable
             id="bi-b"
-            title="BI & Reporting"
+            title="BI & Reporting (Advanced)"
             reqs="140-143"
             data={requirementsData.slice(139, 143)}
             icon={BarChart3}
             expanded={expandedSections['bi-b']}
             toggle={() => toggleSection('bi-b')}
           />
+          <RequirementGroupWithTable
+            id="platform-b"
+            title="Platform Independence"
+            reqs="173-182"
+            data={requirementsData.slice(172, 182)}
+            icon={Shield}
+            expanded={expandedSections['platform-b']}
+            toggle={() => toggleSection('platform-b')}
+          />
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-6">
+        <h3 className="text-xl font-bold text-green-900 mb-4 flex items-center">
+          <CheckCircle2 className="w-6 h-6 mr-2" />
+          Scenario B Summary
+        </h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-lg">
+            <h4 className="font-semibold text-slate-900 mb-2">Phase 1 Outcomes (122 req):</h4>
+            <ul className="text-sm text-slate-700 space-y-1">
+              <li>✓ Data Usability: 30% → 80%</li>
+              <li>✓ Unknown ID: 10% → 70% (ML deployed)</li>
+              <li>✓ SMILES: 50.5% → 100% (complete)</li>
+              <li>✓ Manual Transformation: 40-60 hrs → 20-25 hrs</li>
+              <li>✓ Regulatory Lag: 2-4 weeks → 2-5 days</li>
+              <li>✓ Same Dotmatics UI</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg">
+            <h4 className="font-semibold text-slate-900 mb-2">Phase 2 Outcomes (60 req):</h4>
+            <ul className="text-sm text-slate-700 space-y-1">
+              <li>✓ Data Usability: 80% → 85%+</li>
+              <li>✓ Unknown ID: 70% → 90%+ (enhanced ML)</li>
+              <li>✓ Manual Transformation: 20-25 hrs → &lt;10 hrs</li>
+              <li>✓ Regulatory Lag: 2-5 days → &lt;1 day</li>
+              <li>✓ Real-time ETL pipelines</li>
+              <li>✓ Advanced BI dashboards</li>
+              <li>✓ Platform independence option</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -1828,28 +1992,28 @@ function MetricsSection() {
       <div className="grid md:grid-cols-2 gap-6">
         <MetricCard
           title="Unknown Identification Rate"
-          target="Current 10% → Phase 1: 80-90% → Phase 2: 90%+"
+          target="Scenario A: Phase 1: 10% → Phase 2: 90%+ | Scenario B: Phase 1: 70% → Phase 2: 90%+"
           measurement="ML model accuracy tracking"
           icon={Zap}
           color="from-amber-500 to-orange-500"
         />
         <MetricCard
           title="Data Usability"
-          target="Current 30% → Phase 1: 80% → Phase 2: 95%+"
+          target="Scenario A: Phase 1: 30% → Phase 2: 85%+ | Scenario B: Phase 1: 80% → Phase 2: 85%+"
           measurement="Screening data linkage rate"
           icon={CheckCircle2}
           color="from-green-500 to-emerald-500"
         />
         <MetricCard
           title="SMILES Completeness"
-          target="Current 50.5% → Phase 1: 100%"
+          target="Scenario A: Phase 1: 50.5% → Phase 2: 100% | Scenario B: Phase 1: 100%"
           measurement="Chemical registry structure coverage"
           icon={AlertCircle}
           color="from-blue-500 to-cyan-500"
         />
         <MetricCard
           title="Transformation Manual Effort"
-          target="Current 40-60 hrs/yr → Phase 1: 15-20 → Phase 2: 5-10"
+          target="Current: 40-60 hrs/yr → Phase 1: 20-25 hrs → Phase 2: &lt;10 hrs"
           measurement="Time tracking per upload"
           icon={TrendingUp}
           color="from-purple-500 to-pink-500"
