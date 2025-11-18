@@ -116,6 +116,75 @@ function OverviewSection() {
         <p className="text-slate-700 leading-relaxed mb-4">
           This PRD contains <span className="font-bold text-blue-600">190 consolidated requirements</span> organized across two strategic scenarios, addressing 7 pain points with complete workflows and current process documentation.
         </p>
+
+        {/* System Inventory Metrics */}
+        <div className="bg-white rounded-lg border border-blue-200 p-5 mb-4">
+          <h4 className="text-sm font-bold text-slate-900 mb-3">Current System Inventory (November 13, 2025)</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="border-l-4 border-blue-500 pl-3">
+              <p className="text-xs text-slate-600">Total Chemicals</p>
+              <p className="text-lg font-bold text-slate-900">12,561</p>
+              <p className="text-xs text-green-600">+100/year</p>
+            </div>
+            <div className="border-l-4 border-green-500 pl-3">
+              <p className="text-xs text-slate-600">With SMILES</p>
+              <p className="text-lg font-bold text-slate-900">6,346</p>
+              <p className="text-xs text-slate-500">50.5%</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-3">
+              <p className="text-xs text-slate-600">Without SMILES</p>
+              <p className="text-lg font-bold text-slate-900">6,215</p>
+              <p className="text-xs text-orange-600">49.5% blocked</p>
+            </div>
+            <div className="border-l-4 border-purple-500 pl-3">
+              <p className="text-xs text-slate-600">Active Samples</p>
+              <p className="text-lg font-bold text-slate-900">162</p>
+              <p className="text-xs text-slate-500">SLIMS linked</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+            <div className="border-l-4 border-cyan-500 pl-3">
+              <p className="text-xs text-slate-600">Screening Results</p>
+              <p className="text-lg font-bold text-slate-900">5,860</p>
+              <p className="text-xs text-slate-500">Total records</p>
+            </div>
+            <div className="border-l-4 border-green-500 pl-3">
+              <p className="text-xs text-slate-600">Identified & Linked</p>
+              <p className="text-lg font-bold text-green-700">1,734</p>
+              <p className="text-xs text-green-600">30% usable</p>
+            </div>
+            <div className="border-l-4 border-red-500 pl-3">
+              <p className="text-xs text-slate-600">Unknown (U_*)</p>
+              <p className="text-lg font-bold text-red-600">4,126</p>
+              <p className="text-xs text-red-600">70% ⚠️ CRITICAL</p>
+            </div>
+            <div className="border-l-4 border-yellow-500 pl-3">
+              <p className="text-xs text-slate-600">Unknown Backlog</p>
+              <p className="text-lg font-bold text-slate-900">2,625 hrs</p>
+              <p className="text-xs text-yellow-600">~1.26 FTE-years</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+            <div className="border-l-4 border-slate-500 pl-3">
+              <p className="text-xs text-slate-600">Manual Data Entry</p>
+              <p className="text-lg font-bold text-slate-900">17-33 hrs</p>
+              <p className="text-xs text-green-600">Annually - Efficient</p>
+            </div>
+            <div className="border-l-4 border-amber-500 pl-3">
+              <p className="text-xs text-slate-600">Transformation Time</p>
+              <p className="text-lg font-bold text-slate-900">40-60 hrs</p>
+              <p className="text-xs text-amber-600">Annual - Manual</p>
+            </div>
+            <div className="border-l-4 border-blue-500 pl-3">
+              <p className="text-xs text-slate-600">New Chemicals</p>
+              <p className="text-lg font-bold text-slate-900">~100</p>
+              <p className="text-xs text-slate-500">Per year</p>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-4 grid grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded-lg border border-blue-200">
             <p className="text-sm text-slate-600 mb-1">Current System</p>
