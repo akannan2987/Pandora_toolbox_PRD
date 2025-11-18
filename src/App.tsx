@@ -908,92 +908,255 @@ function ExecutiveSection() {
     <div className="space-y-8 animate-slideUp">
       <h2 className="text-3xl font-bold text-slate-900 mb-6">Executive Summary</h2>
 
+      <div className="bg-gradient-to-br from-slate-50 to-blue-50 border-2 border-slate-300 rounded-xl p-6 shadow-md">
+        <h3 className="text-2xl font-bold text-slate-900 mb-4">Current Situation</h3>
+        <p className="text-slate-700 mb-6 leading-relaxed">
+          The current Pandora Toolbox (Dotmatics) system delivers reliable baseline chemical data management and efficient manual upload workflows, but several areas present clear opportunities for improvement:
+        </p>
+      </div>
+
       <div className="bg-red-50 border border-red-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
           <AlertCircle className="w-6 h-6 mr-2 text-red-600" />
-          Six Critical Pain Points
+          Seven Key Pain Points
         </h3>
-        <p className="text-slate-700 mb-4">
-          Pandora operates efficiently for routine tasks (17-33 hrs/year manual entry) but faces critical data quality and infrastructure challenges:
-        </p>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-            <h4 className="font-bold text-slate-900 mb-2">1. Manual Data Entry</h4>
-            <p className="text-sm text-slate-600">17-33 hours annually - well-controlled, NOT a major issue</p>
+          <div className="bg-white p-4 rounded-lg border-l-4 border-pink-500">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟥</span>
+              <h4 className="font-bold text-slate-900">1. Data Transformation</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Manual and ad-hoc processes affecting consistency and scalability</p>
+            <p className="text-xs text-pink-700 font-semibold">FOUNDATIONAL · 40-60 hrs/year manual</p>
           </div>
+
+          <div className="bg-white p-4 rounded-lg border-l-4 border-pink-500">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟥</span>
+              <h4 className="font-bold text-slate-900">2. Data Architecture & Ontology</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">No formal data models, clear lineage, or semantic framework</p>
+            <p className="text-xs text-pink-700 font-semibold">FOUNDATIONAL · Limits interoperability</p>
+          </div>
+
           <div className="bg-white p-4 rounded-lg border-l-4 border-red-600">
-            <h4 className="font-bold text-slate-900 mb-2">2. Unknown Compound Crisis</h4>
-            <p className="text-sm text-red-600 font-semibold">70% screening data unusable (4,126 unknowns)</p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟧</span>
+              <h4 className="font-bold text-slate-900">3. Unknown Compounds</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Significant expert effort required for identification</p>
+            <p className="text-xs text-red-700 font-semibold">CRITICAL · 70% data unusable (4,126 unknowns, 2,625 hr backlog)</p>
           </div>
+
           <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
-            <h4 className="font-bold text-slate-900 mb-2">3. Incomplete SMILES Data</h4>
-            <p className="text-sm text-slate-600">49.5% chemicals lack structures (6,215 entries)</p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟧</span>
+              <h4 className="font-bold text-slate-900">4. SMILES/Structure Completeness</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Half the chemical registry missing structural data</p>
+            <p className="text-xs text-orange-700 font-semibold">STRATEGIC · 49.5% missing (6,215 chemicals)</p>
           </div>
-          <div className="bg-white p-4 rounded-lg border-l-4 border-yellow-500">
-            <h4 className="font-bold text-slate-900 mb-2">4. Regulatory Integration</h4>
-            <p className="text-sm text-slate-600">2-4 week lag from change to system (9-15 hrs/year)</p>
+
+          <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟧</span>
+              <h4 className="font-bold text-slate-900">5. Regulatory Data Integration</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Manual handling with 2-4 week lag creates compliance risk</p>
+            <p className="text-xs text-orange-700 font-semibold">STRATEGIC · 2-4 weeks → target &lt;1 day</p>
           </div>
-          <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
-            <h4 className="font-bold text-slate-900 mb-2">5. Data Linking Quality</h4>
-            <p className="text-sm text-slate-600">5% link failures, minimal impact (1-2 hrs/year)</p>
+
+          <div className="bg-white p-4 rounded-lg border-l-4 border-amber-500">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟨</span>
+              <h4 className="font-bold text-slate-900">6. Platform Dependency</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Vendor lock-in limiting future technical flexibility</p>
+            <p className="text-xs text-amber-700 font-semibold">OPERATIONAL · Dotmatics-dependent</p>
           </div>
-          <div className="bg-white p-4 rounded-lg border-l-4 border-red-600">
-            <h4 className="font-bold text-slate-900 mb-2">6. Data Transformation Scripts</h4>
-            <p className="text-sm text-red-600 font-semibold">Manual, ad-hoc, inconsistent (40-60 hrs/year)</p>
+
+          <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🟩</span>
+              <h4 className="font-bold text-slate-900">7. Data Entry</h4>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Mostly manual aided with transformation scripts</p>
+            <p className="text-xs text-green-700 font-semibold">MINIMAL · 17-33 hrs/year - Already efficient</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-xl p-6 shadow-md">
+        <h3 className="text-2xl font-bold text-slate-900 mb-4">Strategic Challenge</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <h4 className="font-semibold text-slate-900 mb-3">Current State</h4>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center gap-2">
+                <span className="text-red-500">●</span>
+                <span><strong>Data Usability:</strong> 30% actionable</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-red-500">●</span>
+                <span><strong>Unknown ID:</strong> 10% identified</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">●</span>
+                <span><strong>Manual Transformation:</strong> 40-60 hrs/year</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">●</span>
+                <span><strong>Regulatory Lag:</strong> 2-4 weeks</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">●</span>
+                <span><strong>SMILES:</strong> 50.5% complete</span>
+              </li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <h4 className="font-semibold text-slate-900 mb-3">Target State</h4>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center gap-2">
+                <span className="text-green-500">●</span>
+                <span><strong>Data Usability:</strong> 85%+ actionable</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-500">●</span>
+                <span><strong>Unknown ID:</strong> 90%+ identified</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-500">●</span>
+                <span><strong>Manual Transformation:</strong> &lt;10 hrs/year</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-500">●</span>
+                <span><strong>Regulatory Lag:</strong> &lt;1 day</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-500">●</span>
+                <span><strong>SMILES:</strong> 100% complete</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
       <div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-4">Four Implementation Paths</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
-            <thead>
-              <tr className="bg-gradient-to-r from-slate-700 to-slate-600 text-white">
-                <th className="px-4 py-3 text-left font-semibold">Path</th>
-                <th className="px-4 py-3 text-left font-semibold">Scenario</th>
-                <th className="px-4 py-3 text-left font-semibold">Phase 1</th>
-                <th className="px-4 py-3 text-left font-semibold">Phase 2</th>
-                <th className="px-4 py-3 text-left font-semibold">Work Reduction</th>
-                <th className="px-4 py-3 text-left font-semibold">Best For</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200">
-              <PathRow path="1A" scenario="Build New" phase1="67 core" phase2="Skip" reduction="Manual baseline" bestFor="Core system only" />
-              <PathRow path="1B" scenario="Build New" phase1="67 core" phase2="40 ML+platform" reduction="Unknown ID: 10%→90%" bestFor="Complete system with ML" />
-              <PathRow path="2A" scenario="Hybrid" phase1="26 migrate+API" phase2="Skip" reduction="No change" bestFor="Low-risk migration" />
-              <PathRow path="2B" scenario="Hybrid" phase1="26 migrate+API" phase2="50 automation" reduction="80-90% work reduction" bestFor="⭐ Same UI, full automation" highlight />
-            </tbody>
-          </table>
+        <h3 className="text-2xl font-bold text-slate-900 mb-4">Solution Overview</h3>
+        <p className="text-slate-700 mb-4">
+          <strong>190 consolidated requirements</strong> across <strong>2 strategic scenarios</strong>:
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white p-5 rounded-xl border-2 border-amber-200 shadow-sm">
+            <h4 className="font-bold text-slate-900 mb-3 flex items-center">
+              <Lightbulb className="w-5 h-5 mr-2 text-amber-600" />
+              Scenario A: Complete Replacement
+            </h4>
+            <ul className="space-y-2 text-sm text-slate-700">
+              <li>• Phase 1: 67 core requirements</li>
+              <li>• Phase 2: 99 optional (BI, ML, SMILES, Independence)</li>
+              <li>• <strong>Total: 166 requirements</strong></li>
+            </ul>
+          </div>
+          <div className="bg-white p-5 rounded-xl border-2 border-blue-300 shadow-md">
+            <h4 className="font-bold text-slate-900 mb-3 flex items-center">
+              <Database className="w-5 h-5 mr-2 text-blue-600" />
+              Scenario B: Hybrid ⭐ RECOMMENDED
+            </h4>
+            <ul className="space-y-2 text-sm text-slate-700">
+              <li>• Phase 1: 122 requirements (67 core + 26 migration + 19 ML + 10 SMILES)</li>
+              <li>• Phase 2: 60 optional (50 advanced + 10 Independence)</li>
+              <li>• <strong>Total: 182 requirements</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-xl p-6 shadow-md">
+        <h3 className="text-2xl font-bold text-slate-900 mb-4">Recommended Path: Scenario B (Hybrid)</h3>
+
+        <div className="mb-6">
+          <h4 className="text-lg font-bold text-blue-900 mb-3 flex items-center">
+            <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm">1</span>
+            Phase 1: Foundation + Intelligence
+          </h4>
+          <div className="bg-white p-4 rounded-lg shadow-sm mb-3">
+            <h5 className="font-semibold text-slate-900 mb-2">What Gets Built:</h5>
+            <ul className="space-y-1 text-sm text-slate-700">
+              <li>• Migrate PostgreSQL data → Snowflake</li>
+              <li>• Build API middleware layer</li>
+              <li>• Standardize data transformation (Req 9A-16B)</li>
+              <li>• Deploy ML intelligence for unknowns (Req 144-162)</li>
+              <li>• Complete SMILES data 50.5% → 100% (Req 163-172)</li>
+            </ul>
+          </div>
+          <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+            <h5 className="font-semibold text-green-900 mb-2">Result at Phase 1:</h5>
+            <ul className="space-y-1 text-sm text-slate-700">
+              <li>• Data Usability: 30% → 80%</li>
+              <li>• Unknown Identification: 10% → 70% (ML + manual verification)</li>
+              <li>• Manual Transformation: 40-60 hrs → 20-25 hrs</li>
+              <li>• Regulatory Lag: 2-4 weeks → 2-5 days</li>
+              <li>• SMILES: 50.5% → 100% (one-time completion)</li>
+              <li>• <strong>Users See:</strong> Same Dotmatics UI + faster processing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h4 className="text-lg font-bold text-purple-900 mb-3 flex items-center">
+            <span className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm">2</span>
+            Phase 2: Advanced Automation (Optional)
+          </h4>
+          <div className="bg-white p-4 rounded-lg shadow-sm mb-3">
+            <h5 className="font-semibold text-slate-900 mb-2">What Gets Added:</h5>
+            <ul className="space-y-1 text-sm text-slate-700">
+              <li>• Real-time ETL pipelines (Req 100-124)</li>
+              <li>• Advanced BI dashboards (Req 125-143)</li>
+              <li>• ML model retraining & enhancement (Req 144-162)</li>
+              <li>• Platform independence (Req 173-182)</li>
+            </ul>
+          </div>
+          <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+            <h5 className="font-semibold text-green-900 mb-2">Result at Phase 2:</h5>
+            <ul className="space-y-1 text-sm text-slate-700">
+              <li>• Data Usability: 80% → 85%+ (final ML improvements)</li>
+              <li>• Unknown Identification: 70% → 90%+ (advanced ML + feedback loops)</li>
+              <li>• Manual Transformation: 20-25 hrs → &lt;10 hrs (full automation)</li>
+              <li>• Regulatory Lag: 2-5 days → &lt;1 day (MDC API)</li>
+              <li>• SMILES: 100% (maintained from Phase 1)</li>
+              <li>• <strong>Users See:</strong> Same UI + real-time data + advanced dashboards</li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
         <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
           <CheckCircle2 className="w-6 h-6 mr-2 text-green-600" />
-          Key Outcomes (With Automation - Phase 2)
+          Expected Business Value
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          <OutcomeItem icon={Zap} text="Unknown identification: 10% → 90%+ (ML-powered)" />
-          <OutcomeItem icon={CheckCircle2} text="Data usability: 30% → 95%+ screening data" />
-          <OutcomeItem icon={TrendingUp} text="SMILES completion: 50.5% → 100%" />
-          <OutcomeItem icon={Shield} text="Transformation manual: 40-60 hrs/yr → 5-10 hrs/yr" />
-          <OutcomeItem icon={Cloud} text="Regulatory lag: 2-4 weeks → 1-2 hours" />
-          <OutcomeItem icon={BarChart3} text="Data transformation error rate: <1% (validated)" />
+          <OutcomeItem icon={Shield} text="Improved Compliance: Regulatory updates automated" />
+          <OutcomeItem icon={CheckCircle2} text="Enhanced Science: 85%+ data usable for assessment" />
+          <OutcomeItem icon={Zap} text="Operational Efficiency: 100+ hours saved annually" />
+          <OutcomeItem icon={Cloud} text="Strategic Independence: Freedom from vendor lock-in (optional Phase 2)" />
         </div>
       </div>
 
       <div className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white rounded-xl p-8 shadow-xl">
         <h3 className="text-2xl font-bold mb-4 flex items-center">
           <Target className="w-8 h-8 mr-3" />
-          Recommended Path: 2B (Hybrid + Automation)
+          Why Scenario B (Hybrid)?
         </h3>
         <div className="space-y-3 text-blue-50">
-          <RecommendationItem number="1" text="Phase 1 (Month 8): Migrate data, deploy ML identification, standardize transformations, preserve UI" />
-          <RecommendationItem number="2" text="Solves Critical Issue: 70% unknown compounds identified automatically via ML" />
-          <RecommendationItem number="3" text="Data Quality Foundation: Complete SMILES data + technique-specific transformation scripts" />
-          <RecommendationItem number="4" text="Phase 2 (Month 15): Real-time streaming, full automation, platform independence" />
-          <RecommendationItem number="5" text="Result: 30% useful data → 95%+ useful data with consistent quality assurance" />
+          <RecommendationItem number="1" text="Minimal Risk: Keep familiar Dotmatics UI (users see zero change)" />
+          <RecommendationItem number="2" text="Modern Infrastructure: Snowflake backend (scalable, future-proof)" />
+          <RecommendationItem number="3" text="Early Intelligence: ML deployed Phase 1 (70% unknown ID immediately)" />
+          <RecommendationItem number="4" text="Complete Data: 100% SMILES by Phase 1 (not deferred)" />
+          <RecommendationItem number="5" text="Flexible Options: Phase 2 is optional (can stop if needed, continue if beneficial)" />
+          <RecommendationItem number="6" text="Result: 30% useful data → 80% (Phase 1) → 85%+ (Phase 2) with consistent quality" />
         </div>
       </div>
     </div>
