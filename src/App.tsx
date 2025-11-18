@@ -197,7 +197,7 @@ function OverviewSection() {
             <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
-                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mr-3">CRITICAL</span>
+                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mr-3">MINIMAL</span>
                   <h5 className="font-bold text-slate-900">#2 Unknown Compounds</h5>
                 </div>
                 <span className="text-xs text-slate-500">Req 144-162 (19)</span>
