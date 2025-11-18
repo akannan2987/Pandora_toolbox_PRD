@@ -321,12 +321,12 @@ function OverviewSection() {
           subtitle="150 requirements (75 + 75)"
           icon={Lightbulb}
           color="from-amber-500 to-orange-500"
-          description="Build entirely new system with modern technology and ML intelligence"
+          description="Build entirely new system with modern technology"
           features={[
-            'Phase 1: Core + Transformation (75 requirements)',
-            'Phase 2: ML + Full Automation (75 requirements)',
-            'Includes 8 new data transformation requirements',
-            'Automated unknown compound identification (ML)'
+            'Phase 1: Core system + transformation framework (75 requirements)',
+            'Phase 2: ML intelligence + full automation (75 requirements)',
+            'Timeline: 6-9 months per phase',
+            'Best for: Complete modernization with full control'
           ]}
         />
         <ScenarioCard
@@ -336,10 +336,10 @@ function OverviewSection() {
           color="from-blue-500 to-cyan-500"
           description="Keep Dotmatics UI, replace backend, add intelligence layer"
           features={[
-            'Phase 1: Migration + ML + Transformation (34 requirements)',
-            'Phase 2: Full Automation + Streaming (75 requirements)',
+            'Phase 1: Migration + ML + transformation (34 requirements)',
+            'Phase 2: Full automation + real-time streaming (75 requirements)',
             'ZERO user impact - same familiar interface',
-            'Solves 70% unknown compound crisis'
+            'Timeline: Month 8 (Phase 1), Month 15 (Phase 2)'
           ]}
         />
       </div>
