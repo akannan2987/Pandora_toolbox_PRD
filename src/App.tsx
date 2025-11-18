@@ -185,16 +185,132 @@ function OverviewSection() {
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-blue-200">
-            <p className="text-sm text-slate-600 mb-1">Current System</p>
-            <p className="text-2xl font-bold text-slate-900">12,561</p>
-            <p className="text-xs text-slate-500">Total Chemicals Registered</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg border border-red-200">
-            <p className="text-sm text-slate-600 mb-1">Critical Issue</p>
-            <p className="text-2xl font-bold text-red-600">70%</p>
-            <p className="text-xs text-slate-500">Screening Data Unusable</p>
+        {/* Critical Issues Summary */}
+        <div className="mt-4 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg p-5">
+          <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center">
+            <span className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span>
+            Critical Issues & Pain Points Summary
+          </h4>
+
+          <div className="space-y-3">
+            {/* Critical */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mr-3">CRITICAL</span>
+                  <h5 className="font-bold text-slate-900">#2 Unknown Compounds</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 144-162 (19)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 10% ID → 90%+ ID
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> ML intelligence · <strong>Impact:</strong> 70% screening data currently unusable (4,126 unknowns)
+              </p>
+            </div>
+
+            {/* Foundational - Data Transformation */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#6 Data Transformation</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 9A-16B (15)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 40-60 hrs manual → &lt;10 hrs auto
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Standardized scripts · <strong>Impact:</strong> Process inconsistency, scalability limits
+              </p>
+            </div>
+
+            {/* Foundational - Data Architecture */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#7 Data Architecture</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 68-99 (32)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> No formal model → Complete ontology
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Snowflake + metadata · <strong>Impact:</strong> Limits interoperability & automation
+              </p>
+            </div>
+
+            {/* Strategic - SMILES */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mr-3">STRATEGIC</span>
+                  <h5 className="font-bold text-slate-900">#3 SMILES/Structures</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 163-172 (10)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 50.5% → 100% complete
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Auto-completion · <strong>Impact:</strong> Blocks toxicology workflows
+              </p>
+            </div>
+
+            {/* Strategic - Regulatory */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mr-3">STRATEGIC</span>
+                  <h5 className="font-bold text-slate-900">#4 Regulatory Lag</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 63, 102 (15)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 2-4 weeks → &lt;1 day
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> MDC API + automation · <strong>Impact:</strong> Compliance risk
+              </p>
+            </div>
+
+            {/* Operational - Vendor Lock-in */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded mr-3">OPERATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#5 Vendor Lock-in</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 173-182 (10)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> Dotmatics-dependent → Flexible
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> API abstraction + independence · <strong>Impact:</strong> Limited flexibility
+              </p>
+            </div>
+
+            {/* Minimal - Data Entry */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mr-3">MINIMAL</span>
+                  <h5 className="font-bold text-slate-900">#1 Data Entry</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 3, 4, 6 (13)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 17-33 hrs/yr (not a problem)
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Optimize downstream (transformation) · <strong>Impact:</strong> Already efficient
+              </p>
+            </div>
           </div>
         </div>
       </div>
