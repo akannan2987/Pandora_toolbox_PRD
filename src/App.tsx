@@ -193,11 +193,28 @@ function OverviewSection() {
           </h4>
 
           <div className="space-y-3">
-            {/* Critical */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+            {/* #1 Data Entry - Minimal */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
                   <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mr-3">MINIMAL</span>
+                  <h5 className="font-bold text-slate-900">#1 Data Entry</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 3, 4, 6 (13)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> 17-33 hrs/yr (not a problem)
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Optimize downstream (transformation) · <strong>Impact:</strong> Already efficient
+              </p>
+            </div>
+
+            {/* #2 Unknown Compounds - Critical */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mr-3">CRITICAL</span>
                   <h5 className="font-bold text-slate-900">#2 Unknown Compounds</h5>
                 </div>
                 <span className="text-xs text-slate-500">Req 144-162 (19)</span>
@@ -210,41 +227,7 @@ function OverviewSection() {
               </p>
             </div>
 
-            {/* Foundational - Data Transformation */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
-                  <h5 className="font-bold text-slate-900">#6 Data Transformation</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 9A-16B (15)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 40-60 hrs manual → &lt;10 hrs auto
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Standardized scripts · <strong>Impact:</strong> Process inconsistency, scalability limits
-              </p>
-            </div>
-
-            {/* Foundational - Data Architecture */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
-                  <h5 className="font-bold text-slate-900">#7 Data Architecture</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 68-99 (32)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> No formal model → Complete ontology
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Snowflake + metadata · <strong>Impact:</strong> Limits interoperability & automation
-              </p>
-            </div>
-
-            {/* Strategic - SMILES */}
+            {/* #3 SMILES/Structures - Strategic */}
             <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
@@ -261,7 +244,7 @@ function OverviewSection() {
               </p>
             </div>
 
-            {/* Strategic - Regulatory */}
+            {/* #4 Regulatory Lag - Strategic */}
             <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
@@ -278,7 +261,7 @@ function OverviewSection() {
               </p>
             </div>
 
-            {/* Operational - Vendor Lock-in */}
+            {/* #5 Vendor Lock-in - Operational */}
             <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
@@ -295,20 +278,37 @@ function OverviewSection() {
               </p>
             </div>
 
-            {/* Minimal - Data Entry */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+            {/* #6 Data Transformation - Foundational */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center">
-                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mr-3">MINIMAL</span>
-                  <h5 className="font-bold text-slate-900">#1 Data Entry</h5>
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#6 Data Transformation</h5>
                 </div>
-                <span className="text-xs text-slate-500">Req 3, 4, 6 (13)</span>
+                <span className="text-xs text-slate-500">Req 9A-16B (15)</span>
               </div>
               <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 17-33 hrs/yr (not a problem)
+                <span className="font-semibold">Current → Target:</span> 40-60 hrs manual → &lt;10 hrs auto
               </p>
               <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Optimize downstream (transformation) · <strong>Impact:</strong> Already efficient
+                <strong>Solution:</strong> Standardized scripts · <strong>Impact:</strong> Process inconsistency, scalability limits
+              </p>
+            </div>
+
+            {/* #7 Data Architecture - Foundational */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#7 Data Architecture</h5>
+                </div>
+                <span className="text-xs text-slate-500">Req 68-99 (32)</span>
+              </div>
+              <p className="text-sm text-slate-700 mb-1">
+                <span className="font-semibold">Current → Target:</span> No formal model → Complete ontology
+              </p>
+              <p className="text-xs text-slate-600">
+                <strong>Solution:</strong> Snowflake + metadata · <strong>Impact:</strong> Limits interoperability & automation
               </p>
             </div>
           </div>
