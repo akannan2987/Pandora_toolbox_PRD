@@ -7,6 +7,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [selectedPainPoint, setSelectedPainPoint] = useState<number | null>(null);
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
@@ -909,7 +910,398 @@ function FlowchartSection() {
   );
 }
 
+function PainPointModal({ painPoint, onClose }: { painPoint: number; onClose: () => void }) {
+  const painPointDetails = [
+    {
+      title: "Pain Point #1: Data Transformation",
+      severity: "FOUNDATIONAL",
+      color: "pink",
+      overview: "Manual, ad-hoc data transformation processes lack standardization, logging, validation, and error recovery, creating data quality inconsistencies and limiting scalability.",
+      challenge: "40-60 hrs/year manual processes",
+      workflows: [
+        { name: "Chemical SDF Uploads", time: "15 min per upload", issues: "No error handling, no documentation, poor scalability, no audit trail" },
+        { name: "Screening Data (GC/LC/HS)", time: "1-2 hours per batch", issues: "100% manual, high error rate, low reproducibility" },
+        { name: "Toxicology Data", time: "30-45 min per upload", issues: "95% auto, 5% manual, 50.5% coverage, no validation" },
+        { name: "Text-Delimited Uploads", time: "15 min per upload", issues: "Admin-only, headers only validation, no data checks" }
+      ],
+      gaps: [
+        "No technique scripts (Manual per-technique processing)",
+        "No logging (No transformation audit trail)",
+        "No validation framework (Ad-hoc validation quality)",
+        "No error recovery (Manual workarounds)",
+        "No rollback capability (Cannot revert data)",
+        "No Excel converter (Manual plugin operation)",
+        "No admin approval (No validation gates)"
+      ],
+      solution: "Build GC/LC/HS scripts (Req 9A-16B), Add transformation logging, Standardized validation, Rollback capability",
+      requirements: "Req 9A-12A, 16A-16B (15 requirements)"
+    },
+    {
+      title: "Pain Point #2: Data Architecture & Ontology Framework",
+      severity: "FOUNDATIONAL",
+      color: "pink",
+      overview: "Current system lacks formal data architecture and semantic framework. No ontology exists, limiting interoperability, automated reasoning, and system evolution.",
+      challenge: "No formal data model",
+      missing: [
+        "No formal Entity-Relationship diagram",
+        "No data lineage mapping (where data comes from, how it flows)",
+        "No semantic definitions (shared meaning across systems)",
+        "NO ONTOLOGY FRAMEWORK (formal classification of concepts)",
+        "No metadata standards (descriptions of field meanings)",
+        "No cross-system integration layer"
+      ],
+      impact: [
+        "Poor Architecture Creates: Manual workarounds, difficult maintenance, quality issues, inability to scale, lost business intelligence",
+        "Good Architecture Enables: Automated data flow, easy maintenance, quality assurance, scalability, advanced analytics"
+      ],
+      ontologyValue: [
+        "Unknown Compound Identification: 70% → 90% (ML + ontology reference)",
+        "Regulatory Data Integration: 2-4 weeks → <1 day (MDC API + ontology)",
+        "Data Quality & Validation: 95% → 99%+ (automated validation rules)",
+        "SMILES Data Completion: 50.5% → 100% (auto-discovery via linked databases)",
+        "Cross-System Integration: manual → automatic (ontology-defined standards)"
+      ],
+      solution: "Establish semantic framework, formal data models, metadata catalog, data lineage tracking",
+      requirements: "Req 68-99, 140-143 (32 requirements)"
+    },
+    {
+      title: "Pain Point #3: Unknown Compound Identification Crisis",
+      severity: "CRITICAL",
+      color: "red",
+      overview: "70% of screening data (4,126 of 5,860 compounds) is scientifically unusable because unknown compounds cannot be identified. This represents the SINGLE LARGEST BARRIER to system value.",
+      challenge: "70% data unusable • 2,625 hour backlog",
+      currentState: [
+        "Total unknowns: 4,126 compounds",
+        "Identified by chemists: 400-600 (~10%)",
+        "Partially analyzed: 200-300 (~5%)",
+        "Flagged for review: 300-400 (~7%)",
+        "Abandoned/Deprioritized: 2,700-3,300 (~70%)"
+      ],
+      effort: [
+        "Per-compound analysis: 35-55 minutes",
+        "Total backlog: 4,126 × 45 min = 2,625 hours",
+        "Equivalent to: 1.26 FTE-years to clear",
+        "Annual growth: 500-1,500 new unknowns/year",
+        "Current resolution rate: 10% (backlog never clears)"
+      ],
+      workflow: [
+        "Lab runs instrument → detects ~150 compounds",
+        "Software matches known compounds → assigns CAS",
+        "Unknown compounds → assigned temp ID (U_1050_234)",
+        "Typical: 30% identified, 70% unknown",
+        "Unknowns cannot be analyzed or reported",
+        "Manual identification: 45 min per compound"
+      ],
+      solution: "ML-Based Unknown Identification: Train AI model on 10,000 known compounds, Real-time spectral matching to 50,000-compound library, Confidence scoring with automated approval rules (>95% confidence auto-approve), Expected outcome: 80-90% identification in Phase 1, 90%+ by Phase 2",
+      requirements: "Req 144-162, 154A (19 requirements)"
+    },
+    {
+      title: "Pain Point #4: Incomplete Structural Data (SMILES)",
+      severity: "STRATEGIC",
+      color: "orange",
+      overview: "49.5% of chemicals (6,215 of 12,561) lack SMILES structural data, preventing association with toxicology data and limiting scientific analysis.",
+      challenge: "6,215 chemicals missing SMILES",
+      breakdown: [
+        "Defined organic (~80%): Can have SMILES",
+        "Polymeric (~15%): Generic representation",
+        "Generic (~3%): Mineral oils, fatty acids",
+        "Regulatory-only (~2%): Special handling"
+      ],
+      workflow: [
+        "Assessment Phase: Iterate through 6,215 chemicals, determine type",
+        "Data Collection (Organic 80%): Query external databases (PubChem, ChemSpider, DrugBank), Retrieve structure info, Verify & validate with RDKit",
+        "Data Collection (Polymeric/Generic 20%): Define generic structure representation, Document methodology",
+        "Validation Phase: Verify all SMILES chemically valid, Check for duplicates, Test structure-to-CAS linkage accuracy"
+      ],
+      effort: [
+        "5 minutes average per chemical",
+        "Total: 520 hours",
+        "Timeline: 2-3 months",
+        "Result: All 12,561 chemicals eligible for toxicology"
+      ],
+      solution: "Auto-completion via external databases, validation framework, standardization, property calculation",
+      requirements: "Req 163-172 (10 requirements)"
+    },
+    {
+      title: "Pain Point #5: Regulatory Data Integration",
+      severity: "STRATEGIC",
+      color: "orange",
+      overview: "2-4 week lag in regulatory updates creates compliance risk and requires manual integration.",
+      challenge: "2-4 weeks lag → target <1 day",
+      workflow: [
+        "Monitoring Phase: Monitor EU (ECHA, Europa.eu), Swiss (SUST), national sources, Track effective dates and timelines",
+        "Compilation Phase: Create Excel summary for each regulatory change (regulation name/number, effective date, scope, SBL thresholds, previous vs new limits, source references)",
+        "Validation Phase: Validate mapping to Dotmatics registry, Search registry by CAS and chemical name, Cross-reference new substances to existing chemicals",
+        "Update Phase: Access ELN → Regulatory Update interface, Create experiment entry, Upload regulation mapping spreadsheet, Manual linking and field population, QA check",
+        "Communication Phase: Notify relevant teams of changes, Update compliance guidance documents, Archive previous regulatory dataset"
+      ],
+      effort: [
+        "3-5 updates annually",
+        "2-3 hours per update",
+        "2-4 week lag",
+        "Annual effort: 9-15 hours"
+      ],
+      solution: "MDC Technology API integration (Req 63) → Real-time regulatory feed, <1-2 hour lag, Automated pipeline (Req 102)",
+      requirements: "Req 63, 102 (15 requirements)"
+    },
+    {
+      title: "Pain Point #6: Platform Dependency (Vendor Lock-in)",
+      severity: "OPERATIONAL",
+      color: "amber",
+      overview: "System remains linked to single vendor (Dotmatics) for data entry and reporting, making future technical changes more complex.",
+      challenge: "Dotmatics-dependent",
+      risks: [
+        "Limited flexibility for future technical changes",
+        "Dependency on vendor roadmap and priorities",
+        "Potential licensing cost increases",
+        "Difficulty integrating with other systems",
+        "Constraints on customization and enhancement"
+      ],
+      solution: "API abstraction layer (Scenario B Phase 1), Platform independence options (Phase 2 - optional): Remove Dotmatics dependency, Alternate UI frameworks (React, Vue, custom), Data portability (CSV, JSON, XML), Open-source components (FOSS stack), Database flexibility (PostgreSQL, MySQL), Multi-cloud support (AWS, Azure, GCP), Container portability (Docker/Podman)",
+      requirements: "Req 173-182 (10 requirements - Phase 2 optional)"
+    },
+    {
+      title: "Pain Point #7: Data Entry Processes",
+      severity: "MINIMAL",
+      color: "green",
+      overview: "Multiple data entry methods are used effectively (17-33 hours/year), representing routine operational efficiency NOT a significant pain point. However, the absence of standardized transformation procedures for ingested data creates downstream quality issues.",
+      challenge: "17-33 hrs/year - Already efficient",
+      methods: [
+        "Method 1 - Manual Single Entry: 10-15 min per chemical, 30-40 chemicals annually",
+        "Method 2 - Bulk SDF Files: 15 min per upload, 1-77+ chemicals, 2-3 uploads annually",
+        "Method 3 - Text-Delimited Upload: 15 min per upload, 1-100+ chemicals, 1-2 uploads annually",
+        "Sample Data Entry: 25-35 sessions annually, 15 min per session, 6-9 hours/year",
+        "Toxicology Data Entry: 10-15 sessions annually, 30-45 min per session, 5-15 hours/year"
+      ],
+      summary: [
+        "Total sessions/year: 60-85",
+        "Total annual hours: 17-33",
+        "KEY FINDING: Manual data entry is NOT a significant operational burden",
+        "Real pain points lie downstream in data transformation standardization and unknown compound handling"
+      ],
+      solution: "Optimize downstream transformation processes (not data entry itself)",
+      requirements: "Req 3, 4, 6, 9A, 10B, 11A, 12A, 14, 16A, 16B, 39, 40, 44 (13 requirements)"
+    }
+  ];
+
+  const detail = painPointDetails[painPoint - 1];
+  const bgColor = `bg-${detail.color}-50`;
+  const borderColor = `border-${detail.color}-500`;
+  const textColor = `text-${detail.color}-900`;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fadeIn" onClick={onClose}>
+      <div
+        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={`${bgColor} border-b-4 ${borderColor} p-6 sticky top-0 z-10`}>
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className={`text-2xl font-bold ${textColor} mb-2`}>{detail.title}</h2>
+              <div className="flex items-center gap-3">
+                <span className={`px-3 py-1 bg-${detail.color}-200 ${textColor} text-sm font-bold rounded-full`}>
+                  {detail.severity}
+                </span>
+                <span className="text-sm text-slate-600">{detail.requirements}</span>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white hover:bg-opacity-50 rounded-lg transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+
+        <div className="p-6 space-y-6">
+          <div>
+            <h3 className="font-bold text-slate-900 text-lg mb-2">Overview</h3>
+            <p className="text-slate-700 leading-relaxed">{detail.overview}</p>
+          </div>
+
+          <div className="bg-slate-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <h4 className="font-bold text-slate-900 mb-2">Challenge</h4>
+            <p className="text-slate-700">{detail.challenge}</p>
+          </div>
+
+          {detail.currentState && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Current State</h3>
+              <ul className="space-y-2">
+                {detail.currentState.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.missing && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">What's Missing</h3>
+              <ul className="space-y-2">
+                {detail.missing.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">❌</span>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.workflows && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Current Workflows</h3>
+              <div className="space-y-3">
+                {detail.workflows.map((workflow, idx) => (
+                  <div key={idx} className="bg-slate-50 p-3 rounded-lg">
+                    <div className="font-semibold text-slate-900">{workflow.name}</div>
+                    <div className="text-sm text-slate-600 mt-1">Time: {workflow.time}</div>
+                    <div className="text-sm text-red-600 mt-1">Issues: {workflow.issues}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.workflow && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Workflow</h3>
+              <ul className="space-y-2">
+                {detail.workflow.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">{idx + 1}.</span>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.gaps && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Critical Gaps</h3>
+              <div className="grid md:grid-cols-2 gap-2">
+                {detail.gaps.map((gap, idx) => (
+                  <div key={idx} className="bg-red-50 p-2 rounded text-sm text-slate-700 border-l-2 border-red-400">
+                    {gap}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.effort && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Effort & Impact</h3>
+              <div className="bg-amber-50 p-4 rounded-lg space-y-2">
+                {detail.effort.map((item, idx) => (
+                  <div key={idx} className="text-slate-700">
+                    <strong>{item.split(':')[0]}:</strong> {item.split(':')[1]}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.methods && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Data Entry Methods</h3>
+              <ul className="space-y-2">
+                {detail.methods.map((method, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span className="text-slate-700">{method}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.summary && (
+            <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+              <h4 className="font-bold text-green-900 mb-2">Summary</h4>
+              <ul className="space-y-1">
+                {detail.summary.map((item, idx) => (
+                  <li key={idx} className="text-slate-700 text-sm">• {item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.breakdown && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Breakdown</h3>
+              <ul className="space-y-2">
+                {detail.breakdown.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {detail.impact && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Impact</h3>
+              <div className="space-y-3">
+                {detail.impact.map((item, idx) => (
+                  <div key={idx} className="bg-slate-50 p-3 rounded-lg text-slate-700">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.ontologyValue && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Ontology Value</h3>
+              <div className="space-y-2">
+                {detail.ontologyValue.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2 bg-green-50 p-2 rounded">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span className="text-slate-700 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.risks && (
+            <div>
+              <h3 className="font-bold text-slate-900 text-lg mb-3">Risks</h3>
+              <ul className="space-y-2">
+                {detail.risks.map((risk, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-red-500 mt-1">⚠️</span>
+                    <span className="text-slate-700">{risk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border-l-4 border-green-500">
+            <h3 className="font-bold text-green-900 text-lg mb-2">Solution</h3>
+            <p className="text-slate-700 leading-relaxed">{detail.solution}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ExecutiveSection() {
+  const [selectedPainPoint, setSelectedPainPoint] = useState<number | null>(null);
+
   return (
     <div className="space-y-8 animate-slideUp">
       <h2 className="text-3xl font-bold text-slate-900 mb-6">Executive Summary</h2>
@@ -927,70 +1319,119 @@ function ExecutiveSection() {
           Seven Key Pain Points
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-lg border-l-4 border-pink-500">
+          <div
+            onClick={() => setSelectedPainPoint(1)}
+            className="bg-white p-4 rounded-lg border-l-4 border-pink-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟥</span>
               <h4 className="font-bold text-slate-900">1. Data Transformation</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Manual and ad-hoc processes affecting consistency and scalability</p>
             <p className="text-xs text-pink-700 font-semibold">FOUNDATIONAL · 40-60 hrs/year manual</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-pink-500">
+          <div
+            onClick={() => setSelectedPainPoint(2)}
+            className="bg-white p-4 rounded-lg border-l-4 border-pink-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟥</span>
               <h4 className="font-bold text-slate-900">2. Data Architecture & Ontology</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">No formal data models, clear lineage, or semantic framework</p>
             <p className="text-xs text-pink-700 font-semibold">FOUNDATIONAL · Limits interoperability</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-red-600">
+          <div
+            onClick={() => setSelectedPainPoint(3)}
+            className="bg-white p-4 rounded-lg border-l-4 border-red-600 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟧</span>
               <h4 className="font-bold text-slate-900">3. Unknown Compounds</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Significant expert effort required for identification</p>
             <p className="text-xs text-red-700 font-semibold">CRITICAL · 70% data unusable (4,126 unknowns, 2,625 hr backlog)</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+          <div
+            onClick={() => setSelectedPainPoint(4)}
+            className="bg-white p-4 rounded-lg border-l-4 border-orange-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟧</span>
               <h4 className="font-bold text-slate-900">4. SMILES/Structure Completeness</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Half the chemical registry missing structural data</p>
             <p className="text-xs text-orange-700 font-semibold">STRATEGIC · 49.5% missing (6,215 chemicals)</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+          <div
+            onClick={() => setSelectedPainPoint(5)}
+            className="bg-white p-4 rounded-lg border-l-4 border-orange-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟧</span>
               <h4 className="font-bold text-slate-900">5. Regulatory Data Integration</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Manual handling with 2-4 week lag creates compliance risk</p>
             <p className="text-xs text-orange-700 font-semibold">STRATEGIC · 2-4 weeks → target &lt;1 day</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-amber-500">
+          <div
+            onClick={() => setSelectedPainPoint(6)}
+            className="bg-white p-4 rounded-lg border-l-4 border-amber-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟨</span>
               <h4 className="font-bold text-slate-900">6. Platform Dependency</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Vendor lock-in limiting future technical flexibility</p>
             <p className="text-xs text-amber-700 font-semibold">OPERATIONAL · Dotmatics-dependent</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
+          <div
+            onClick={() => setSelectedPainPoint(7)}
+            className="bg-white p-4 rounded-lg border-l-4 border-green-500 cursor-pointer hover:shadow-lg hover:scale-105 transition-all"
+          >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">🟩</span>
               <h4 className="font-bold text-slate-900">7. Data Entry</h4>
             </div>
             <p className="text-sm text-slate-600 mb-2">Mostly manual aided with transformation scripts</p>
             <p className="text-xs text-green-700 font-semibold">MINIMAL · 17-33 hrs/year - Already efficient</p>
+            <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
+              <Search className="w-3 h-3" /> Click for details
+            </p>
           </div>
         </div>
       </div>
+
+      {selectedPainPoint && (
+        <PainPointModal
+          painPoint={selectedPainPoint}
+          onClose={() => setSelectedPainPoint(null)}
+        />
+      )}
 
       <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-xl p-6 shadow-md">
         <h3 className="text-2xl font-bold text-slate-900 mb-4">Strategic Challenge</h3>
