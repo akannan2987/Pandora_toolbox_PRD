@@ -1439,22 +1439,6 @@ function AutomationFeature({ title, reqs, description }: any) {
   );
 }
 
-
-function MetricCard({ title, target, measurement, icon: Icon, color }: any) {
-  return (
-    <div className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-      <div className={`bg-gradient-to-r ${color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
-        <Icon className="w-6 h-6 text-white" />
-      </div>
-      <h3 className="text-lg font-bold text-slate-900 mb-2">{title}</h3>
-      <div className="text-2xl font-bold text-slate-800 mb-3">{target}</div>
-      <p className="text-sm text-slate-600">
-        <span className="font-medium">Measurement:</span> {measurement}
-      </p>
-    </div>
-  );
-}
-
 function TechStack({ title, items }: { title: string, items: string[] }) {
   return (
     <div>
