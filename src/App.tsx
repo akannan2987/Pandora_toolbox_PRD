@@ -493,16 +493,16 @@ function FlowchartSection() {
         title = 'Path 1A: Phase 1 Core System Build (67 Requirements)';
         break;
       case '1B':
-        requirements = requirementsData.slice(0, 107);
-        title = 'Path 1B: Phase 1+2 Complete Build (107 Requirements Total - 67 Phase 1 + 40 Phase 2)';
+        requirements = requirementsData.slice(0, 166);
+        title = 'Path 1B: Phase 1+2 Complete Build (166 Requirements Total - 67 Phase 1 + 99 Phase 2)';
         break;
       case '2A':
         requirements = requirementsData.slice(67, 93);
         title = 'Path 2A: Phase 1 Database Migration + API (26 Requirements)';
         break;
       case '2B':
-        requirements = requirementsData.slice(67, 143);
-        title = 'Path 2B: Phase 1+2 Hybrid Complete (76 Requirements Total - 26 Phase 1 + 50 Phase 2)';
+        requirements = requirementsData.slice(67, 249);
+        title = 'Path 2B: Phase 1+2 Hybrid Complete (182 Requirements Total - 122 Phase 1 + 60 Phase 2)';
         break;
     }
 
@@ -666,9 +666,9 @@ function FlowchartSection() {
           {/* Starting Point */}
           <div className="flex justify-center mb-12">
             <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-8 py-4 rounded-xl shadow-lg text-center">
-              <div className="text-sm font-medium mb-1">Current State</div>
+              <div className="text-sm font-medium mb-1">Current State - November 2025</div>
               <div className="text-xl font-bold">Pandora Toolbox (Dotmatics)</div>
-              <div className="text-sm mt-1">70% screening data unusable • Manual transformations • 12,561 chemicals</div>
+              <div className="text-sm mt-1">12,561 chemicals • 70% unknown data • 49.5% missing SMILES • Manual processes</div>
             </div>
           </div>
 
@@ -720,7 +720,7 @@ function FlowchartSection() {
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
                   <div className="font-bold">Scenario A</div>
                   <div className="text-sm">Complete Replacement</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 107 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 166 Req</div>
                 </div>
               </div>
 
@@ -762,15 +762,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 1B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">107 Req (67+40)</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">166 Req (67+99)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Core + ML + Platform
+                  <strong>Phase 1 + 2:</strong> Core + Advanced Features
                 </div>
-                <div className="text-xs text-slate-600">ML identification • Vendor independence</div>
+                <div className="text-xs text-slate-600">BI dashboards • ML intelligence • SMILES • Platform independence</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Unknown ID: 10%→90%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Complete system with ML</div>
+                  <div className="text-xs text-green-600 font-bold">Data Usability: 30%→85%+ • Unknown ID: 10%→90%+</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Complete transformation</div>
                 </div>
               </div>
             </div>
@@ -779,9 +779,9 @@ function FlowchartSection() {
             <div className="space-y-6">
               <div className="flex justify-center">
                 <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-lg text-center w-full">
-                  <div className="font-bold">Scenario B</div>
+                  <div className="font-bold">Scenario B ⭐ RECOMMENDED</div>
                   <div className="text-sm">Hybrid Approach</div>
-                  <div className="text-xs mt-1 opacity-90">Total: 76 Req</div>
+                  <div className="text-xs mt-1 opacity-90">Total: 182 Req</div>
                 </div>
               </div>
 
@@ -798,15 +798,15 @@ function FlowchartSection() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2A</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">26 Req</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">93 Req</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1:</strong> Migration + API Layer
+                  <strong>Phase 1:</strong> Core + Migration + API
                 </div>
-                <div className="text-xs text-slate-600">Keep Dotmatics UI • Snowflake DB</div>
+                <div className="text-xs text-slate-600">Keep Dotmatics UI • Modern backend • No ML yet</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-slate-500">No user impact</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Low-risk migration</div>
+                  <div className="text-xs text-slate-500">Zero user impact • Manual processes remain</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Low-risk baseline</div>
                 </div>
               </div>
 
@@ -826,15 +826,17 @@ function FlowchartSection() {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-slate-900">Path 2B</span>
-                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">76 Req (26+50)</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">182 Req (122+60)</span>
                 </div>
                 <div className="text-sm text-slate-700 mb-2">
-                  <strong>Phase 1 + 2:</strong> Migration + Automation
+                  <strong>Phase 1:</strong> Core + Migration + ML + SMILES (122)
+                  <br />
+                  <strong>Phase 2:</strong> Advanced Automation (60)
                 </div>
-                <div className="text-xs text-slate-600">Same UI • Automated • Real-time</div>
+                <div className="text-xs text-slate-600">Same UI • ML from Phase 1 • 100% SMILES • Full automation Phase 2</div>
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-green-600 font-bold">Work reduction: 80-90%</div>
-                  <div className="text-xs font-medium text-blue-600">Best for: Same UI, full automation</div>
+                  <div className="text-xs text-green-600 font-bold">Ph1: 30%→80% data usable • Ph2: 80%→85%+ • 100+ hrs/yr saved</div>
+                  <div className="text-xs font-medium text-blue-600">Best for: Zero user impact + maximum value</div>
                 </div>
               </div>
             </div>
@@ -877,24 +879,28 @@ function FlowchartSection() {
           )}
           {selectedPath === '1B' && (
             <div>
-              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Build new system + full automation</p>
-              <p className="text-slate-700 mb-2"><strong>Timeline:</strong> Longer initial build, maximum ROI</p>
-              <p className="text-slate-700"><strong>User Impact:</strong> Learn new interface, 80-90% less manual work</p>
+              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Build entirely new system with all features (166 req)</p>
+              <p className="text-slate-700 mb-2"><strong>Phase 1:</strong> 67 core requirements • <strong>Phase 2:</strong> 99 advanced (BI, ML, SMILES, Independence)</p>
+              <p className="text-slate-700 mb-2"><strong>Outcome:</strong> Data usability 30%→85%+ • Unknown ID 10%→90%+ • Manual work &lt;10 hrs/yr</p>
+              <p className="text-slate-700"><strong>User Impact:</strong> Learn new interface • 100+ hours saved annually</p>
             </div>
           )}
           {selectedPath === '2A' && (
             <div>
-              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Migrate to Snowflake, keep Dotmatics UI</p>
-              <p className="text-slate-700 mb-2"><strong>Timeline:</strong> Fast, low-risk migration</p>
-              <p className="text-slate-700"><strong>User Impact:</strong> ZERO - users see no change</p>
+              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Core system + backend migration only (93 req = 67 core + 26 migration)</p>
+              <p className="text-slate-700 mb-2"><strong>Phase 1 Only:</strong> Modern infrastructure, no ML, no automation</p>
+              <p className="text-slate-700 mb-2"><strong>Outcome:</strong> Same data quality • Manual processes remain • Foundation for future</p>
+              <p className="text-slate-700"><strong>User Impact:</strong> ZERO - same UI, same workflows, faster backend</p>
             </div>
           )}
           {selectedPath === '2B' && (
             <div>
-              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Migrate to Snowflake + automate data flows</p>
-              <p className="text-slate-700 mb-2"><strong>Timeline:</strong> Phased approach, flexible</p>
-              <p className="text-slate-700 mb-2"><strong>User Impact:</strong> Same UI, 80-90% less manual work</p>
-              <p className="text-green-600 font-bold mt-3">✓ Recommended for best balance of risk, ROI, and user experience</p>
+              <p className="text-slate-700 mb-2"><strong>Approach:</strong> Full hybrid transformation (182 req = 122 Phase 1 + 60 Phase 2)</p>
+              <p className="text-slate-700 mb-2"><strong>Phase 1 (122 req):</strong> 67 core + 26 migration + 19 ML + 10 SMILES → Data usability 30%→80%</p>
+              <p className="text-slate-700 mb-2"><strong>Phase 2 (60 req):</strong> Advanced automation + BI + real-time pipelines → 80%→85%+ usability</p>
+              <p className="text-slate-700 mb-2"><strong>Key Advantage:</strong> ML + SMILES deployed in Phase 1 (not deferred to Phase 2)</p>
+              <p className="text-slate-700 mb-2"><strong>User Impact:</strong> Same Dotmatics UI throughout • 100+ hours saved annually • Zero training needed</p>
+              <p className="text-green-600 font-bold mt-3">⭐ RECOMMENDED: Best balance of minimal risk, early intelligence, maximum ROI, zero user disruption</p>
             </div>
           )}
         </div>
