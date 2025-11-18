@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronRight, FileText, Target, Lightbulb, CheckCircle2, AlertCircle, TrendingUp, Database, Cloud, Zap, Shield, Users, BarChart3, Menu, X, ArrowRight, ArrowDown, GitBranch, FolderSearch, Workflow, Activity, Gauge, Table, RefreshCw, Settings, Link, Monitor } from 'lucide-react';
+import { ChevronDown, ChevronRight, FileText, Target, Lightbulb, CheckCircle2, AlertCircle, TrendingUp, Database, Cloud, Zap, Shield, Users, BarChart3, Menu, X, ArrowRight, ArrowDown, GitBranch, FolderSearch, Workflow, Activity, Gauge, Table, RefreshCw, Settings, Link, Monitor, Beaker, ClipboardList, Search } from 'lucide-react';
 import { requirementsData } from './data/requirements';
+import { DonutChart, MetricCard, HorizontalBarChart, ProgressBar } from './components/InteractiveCharts';
 
 function App() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -118,197 +119,295 @@ function OverviewSection() {
         </p>
 
         {/* System Inventory Metrics */}
-        <div className="bg-white rounded-lg border border-blue-200 p-5 mb-4">
-          <h4 className="text-sm font-bold text-slate-900 mb-3">Current System Inventory (November 13, 2025)</h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="border-l-4 border-blue-500 pl-3">
-              <p className="text-xs text-slate-600">Total Chemicals</p>
-              <p className="text-lg font-bold text-slate-900">12,561</p>
-              <p className="text-xs text-green-600">+100/year</p>
-            </div>
-            <div className="border-l-4 border-green-500 pl-3">
-              <p className="text-xs text-slate-600">With SMILES</p>
-              <p className="text-lg font-bold text-slate-900">6,346</p>
-              <p className="text-xs text-slate-500">50.5%</p>
-            </div>
-            <div className="border-l-4 border-orange-500 pl-3">
-              <p className="text-xs text-slate-600">Without SMILES</p>
-              <p className="text-lg font-bold text-slate-900">6,215</p>
-              <p className="text-xs text-orange-600">49.5% blocked</p>
-            </div>
-            <div className="border-l-4 border-purple-500 pl-3">
-              <p className="text-xs text-slate-600">Active Samples</p>
-              <p className="text-lg font-bold text-slate-900">162</p>
-              <p className="text-xs text-slate-500">SLIMS linked</p>
-            </div>
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-6 mb-4 shadow-lg">
+          <h4 className="text-lg font-bold text-slate-900 mb-6 flex items-center">
+            <Beaker className="w-5 h-5 mr-2 text-blue-600" />
+            Current System Inventory (November 13, 2025)
+          </h4>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <MetricCard
+              icon={<Database className="w-5 h-5 text-blue-600" />}
+              label="Total Chemicals"
+              value="12,561"
+              subtitle="Growing inventory"
+              trend="up"
+              trendValue="+100/year"
+              color="border-blue-500"
+            />
+            <MetricCard
+              icon={<CheckCircle2 className="w-5 h-5 text-green-600" />}
+              label="With SMILES"
+              value="6,346"
+              subtitle="50.5% complete"
+              color="border-green-500"
+            />
+            <MetricCard
+              icon={<AlertCircle className="w-5 h-5 text-orange-600" />}
+              label="Without SMILES"
+              value="6,215"
+              subtitle="49.5% blocked"
+              alert
+              color="border-orange-500"
+            />
+            <MetricCard
+              icon={<Link className="w-5 h-5 text-purple-600" />}
+              label="Active Samples"
+              value="162"
+              subtitle="SLIMS linked"
+              color="border-purple-500"
+            />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-            <div className="border-l-4 border-cyan-500 pl-3">
-              <p className="text-xs text-slate-600">Screening Results</p>
-              <p className="text-lg font-bold text-slate-900">5,860</p>
-              <p className="text-xs text-slate-500">Total records</p>
-            </div>
-            <div className="border-l-4 border-green-500 pl-3">
-              <p className="text-xs text-slate-600">Identified & Linked</p>
-              <p className="text-lg font-bold text-green-700">1,734</p>
-              <p className="text-xs text-green-600">30% usable</p>
-            </div>
-            <div className="border-l-4 border-red-500 pl-3">
-              <p className="text-xs text-slate-600">Unknown (U_*)</p>
-              <p className="text-lg font-bold text-red-600">4,126</p>
-              <p className="text-xs text-red-600">70% ⚠️ CRITICAL</p>
-            </div>
-            <div className="border-l-4 border-yellow-500 pl-3">
-              <p className="text-xs text-slate-600">Unknown Backlog</p>
-              <p className="text-lg font-bold text-slate-900">2,625 hrs</p>
-              <p className="text-xs text-yellow-600">~1.26 FTE-years</p>
-            </div>
+          <div className="bg-white rounded-xl p-6 mb-6 shadow-sm">
+            <h5 className="text-sm font-bold text-slate-900 mb-4 flex items-center">
+              <Search className="w-4 h-4 mr-2 text-red-600" />
+              Screening Results Analysis
+            </h5>
+            <DonutChart
+              segments={[
+                {
+                  label: 'Unknown (U_*)',
+                  value: 4126,
+                  color: '#ef4444',
+                  icon: <AlertCircle className="w-4 h-4 text-red-600" />
+                },
+                {
+                  label: 'Identified & Linked',
+                  value: 1734,
+                  color: '#22c55e',
+                  icon: <CheckCircle2 className="w-4 h-4 text-green-600" />
+                }
+              ]}
+              centerLabel="Total"
+              centerValue="5,860"
+            />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
-            <div className="border-l-4 border-slate-500 pl-3">
-              <p className="text-xs text-slate-600">Manual Data Entry</p>
-              <p className="text-lg font-bold text-slate-900">17-33 hrs</p>
-              <p className="text-xs text-green-600">Annually - Efficient</p>
-            </div>
-            <div className="border-l-4 border-amber-500 pl-3">
-              <p className="text-xs text-slate-600">Transformation Time</p>
-              <p className="text-lg font-bold text-slate-900">40-60 hrs</p>
-              <p className="text-xs text-amber-600">Annual - Manual</p>
-            </div>
-            <div className="border-l-4 border-blue-500 pl-3">
-              <p className="text-xs text-slate-600">New Chemicals</p>
-              <p className="text-lg font-bold text-slate-900">~100</p>
-              <p className="text-xs text-slate-500">Per year</p>
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h5 className="text-sm font-bold text-slate-900 mb-4 flex items-center">
+              <Activity className="w-4 h-4 mr-2 text-slate-700" />
+              Operational Workload
+            </h5>
+            <div className="space-y-4">
+              <ProgressBar
+                label="Manual Data Entry (Annual)"
+                value={25}
+                max={100}
+                color="bg-green-500"
+                showPercentage={false}
+              />
+              <div className="text-xs text-slate-600 -mt-2 ml-1">17-33 hrs/year - Efficient ✓</div>
+
+              <ProgressBar
+                label="Data Transformation (Annual)"
+                value={50}
+                max={100}
+                color="bg-amber-500"
+                showPercentage={false}
+              />
+              <div className="text-xs text-amber-700 -mt-2 ml-1 font-medium">40-60 hrs/year - Manual Process ⚠️</div>
+
+              <ProgressBar
+                label="Unknown Compound Backlog"
+                value={2625}
+                max={3000}
+                color="bg-red-500"
+              />
+              <div className="text-xs text-red-700 -mt-2 ml-1 font-medium">2,625 hours (~1.26 FTE-years) 🚨</div>
             </div>
           </div>
         </div>
 
         {/* Critical Issues Summary */}
-        <div className="mt-4 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg p-5">
-          <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center">
-            <span className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span>
+        <div className="mt-4 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 border-2 border-red-200 rounded-xl p-6 shadow-lg">
+          <h4 className="text-lg font-bold text-slate-900 mb-6 flex items-center">
+            <ClipboardList className="w-5 h-5 mr-2 text-red-600" />
             Critical Issues & Pain Points Summary
+            <span className="ml-3 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
           </h4>
 
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="bg-white rounded-xl p-5 shadow-sm">
+              <h5 className="text-sm font-bold text-slate-900 mb-4 flex items-center">
+                <Gauge className="w-4 h-4 mr-2 text-red-600" />
+                Issues by Severity
+              </h5>
+              <DonutChart
+                segments={[
+                  { label: 'Foundational', value: 2, color: '#ec4899' },
+                  { label: 'Strategic', value: 2, color: '#f97316' },
+                  { label: 'Critical', value: 1, color: '#ef4444' },
+                  { label: 'Operational', value: 1, color: '#f59e0b' },
+                  { label: 'Minimal', value: 1, color: '#22c55e' }
+                ]}
+                centerLabel="Issues"
+                centerValue="7"
+              />
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm">
+              <h5 className="text-sm font-bold text-slate-900 mb-4 flex items-center">
+                <TrendingUp className="w-4 h-4 mr-2 text-blue-600" />
+                Impact Analysis
+              </h5>
+              <HorizontalBarChart
+                items={[
+                  {
+                    label: 'Data Transformation',
+                    value: 50,
+                    maxValue: 60,
+                    color: 'bg-gradient-to-r from-pink-500 to-pink-600',
+                    severity: 'critical'
+                  },
+                  {
+                    label: 'Data Architecture',
+                    value: 0,
+                    maxValue: 100,
+                    color: 'bg-gradient-to-r from-pink-500 to-pink-600',
+                    severity: 'critical'
+                  },
+                  {
+                    label: 'Unknown Compounds',
+                    value: 4126,
+                    maxValue: 5860,
+                    color: 'bg-gradient-to-r from-red-500 to-red-600',
+                    severity: 'critical'
+                  },
+                  {
+                    label: 'SMILES Completion',
+                    value: 6215,
+                    maxValue: 12561,
+                    color: 'bg-gradient-to-r from-orange-500 to-orange-600',
+                    severity: 'high'
+                  }
+                ]}
+              />
+            </div>
+          </div>
+
           <div className="space-y-3">
-            {/* #1 Data Entry - Minimal */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500 hover:shadow-md transition-all">
               <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mr-3">MINIMAL</span>
-                  <h5 className="font-bold text-slate-900">#1 Data Entry</h5>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#1 Data Transformation</h5>
                 </div>
-                <span className="text-xs text-slate-500">Req 3, 4, 6 (13)</span>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 9A-16B (15)</span>
               </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 17-33 hrs/yr (not a problem)
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Optimize downstream (transformation) · <strong>Impact:</strong> Already efficient
-              </p>
-            </div>
-
-            {/* #2 Unknown Compounds - Critical */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mr-3">CRITICAL</span>
-                  <h5 className="font-bold text-slate-900">#2 Unknown Compounds</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 144-162 (19)</span>
+              <div className="mb-2">
+                <ProgressBar label="Current → Target" value={10} max={60} color="bg-pink-500" showPercentage={false} />
+                <div className="text-xs text-slate-600 mt-1">40-60 hrs manual → &lt;10 hrs automated</div>
               </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 10% ID → 90%+ ID
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> ML intelligence · <strong>Impact:</strong> 70% screening data currently unusable (4,126 unknowns)
-              </p>
-            </div>
-
-            {/* #3 SMILES/Structures - Strategic */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mr-3">STRATEGIC</span>
-                  <h5 className="font-bold text-slate-900">#3 SMILES/Structures</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 163-172 (10)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 50.5% → 100% complete
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Auto-completion · <strong>Impact:</strong> Blocks toxicology workflows
-              </p>
-            </div>
-
-            {/* #4 Regulatory Lag - Strategic */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mr-3">STRATEGIC</span>
-                  <h5 className="font-bold text-slate-900">#4 Regulatory Lag</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 63, 102 (15)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 2-4 weeks → &lt;1 day
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> MDC API + automation · <strong>Impact:</strong> Compliance risk
-              </p>
-            </div>
-
-            {/* #5 Vendor Lock-in - Operational */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded mr-3">OPERATIONAL</span>
-                  <h5 className="font-bold text-slate-900">#5 Vendor Lock-in</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 173-182 (10)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> Dotmatics-dependent → Flexible
-              </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> API abstraction + independence · <strong>Impact:</strong> Limited flexibility
-              </p>
-            </div>
-
-            {/* #6 Data Transformation - Foundational */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
-                  <h5 className="font-bold text-slate-900">#6 Data Transformation</h5>
-                </div>
-                <span className="text-xs text-slate-500">Req 9A-16B (15)</span>
-              </div>
-              <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> 40-60 hrs manual → &lt;10 hrs auto
-              </p>
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
                 <strong>Solution:</strong> Standardized scripts · <strong>Impact:</strong> Process inconsistency, scalability limits
               </p>
             </div>
 
-            {/* #7 Data Architecture - Foundational */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
+            <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500 hover:shadow-md transition-all">
               <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded mr-3">FOUNDATIONAL</span>
-                  <h5 className="font-bold text-slate-900">#7 Data Architecture</h5>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-bold rounded">FOUNDATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#2 Data Architecture</h5>
                 </div>
-                <span className="text-xs text-slate-500">Req 68-99 (32)</span>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 68-99 (32)</span>
+              </div>
+              <div className="mb-2">
+                <ProgressBar label="Current → Target" value={0} max={100} color="bg-pink-500" showPercentage={false} />
+                <div className="text-xs text-slate-600 mt-1">No formal model → Complete ontology</div>
+              </div>
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> Snowflake + metadata · <strong>Impact:</strong> Limits interoperability & automation
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500 hover:shadow-md transition-all">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    CRITICAL
+                  </span>
+                  <h5 className="font-bold text-slate-900">#3 Unknown Compounds</h5>
+                </div>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 144-162 (19)</span>
+              </div>
+              <div className="mb-2">
+                <ProgressBar label="Current → Target" value={10} max={90} color="bg-red-500" showPercentage={false} />
+                <div className="text-xs text-slate-600 mt-1">10% identified → 90%+ automated identification</div>
+              </div>
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> ML intelligence · <strong>Impact:</strong> 70% screening data unusable (4,126 unknowns, 2,625 hr backlog)
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500 hover:shadow-md transition-all">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded">STRATEGIC</span>
+                  <h5 className="font-bold text-slate-900">#4 SMILES/Structures</h5>
+                </div>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 163-172 (10)</span>
+              </div>
+              <div className="mb-2">
+                <ProgressBar label="Current → Target" value={50.5} max={100} color="bg-orange-500" />
+                <div className="text-xs text-slate-600 mt-1">6,346 complete, 6,215 missing</div>
+              </div>
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> Auto-completion · <strong>Impact:</strong> Blocks toxicology workflows
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500 hover:shadow-md transition-all">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded">STRATEGIC</span>
+                  <h5 className="font-bold text-slate-900">#5 Regulatory Lag</h5>
+                </div>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 63, 102 (15)</span>
+              </div>
+              <div className="mb-2">
+                <ProgressBar label="Reduction Target" value={85} max={100} color="bg-orange-500" showPercentage={false} />
+                <div className="text-xs text-slate-600 mt-1">2-4 weeks → &lt;1 day (85% faster)</div>
+              </div>
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> MDC API + automation · <strong>Impact:</strong> Compliance risk
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500 hover:shadow-md transition-all">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded">OPERATIONAL</span>
+                  <h5 className="font-bold text-slate-900">#6 Vendor Lock-in</h5>
+                </div>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 173-182 (10)</span>
               </div>
               <p className="text-sm text-slate-700 mb-1">
-                <span className="font-semibold">Current → Target:</span> No formal model → Complete ontology
+                <span className="font-semibold">Current → Target:</span> Dotmatics-dependent → Flexible architecture
               </p>
-              <p className="text-xs text-slate-600">
-                <strong>Solution:</strong> Snowflake + metadata · <strong>Impact:</strong> Limits interoperability & automation
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> API abstraction + independence · <strong>Impact:</strong> Limited flexibility
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500 hover:shadow-md transition-all">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    MINIMAL
+                  </span>
+                  <h5 className="font-bold text-slate-900">#7 Data Entry</h5>
+                </div>
+                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">Req 3, 4, 6 (13)</span>
+              </div>
+              <div className="mb-2">
+                <ProgressBar label="Efficiency Level" value={90} max={100} color="bg-green-500" />
+                <div className="text-xs text-green-600 mt-1">17-33 hrs/year - Already efficient ✓</div>
+              </div>
+              <p className="text-xs text-slate-700 bg-slate-50 p-2 rounded">
+                <strong>Solution:</strong> Optimize downstream (transformation) · <strong>Impact:</strong> Not a problem
               </p>
             </div>
           </div>
