@@ -154,11 +154,31 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   color,
   alert
 }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const alertTooltips: Record<string, string> = {
+    'Without SMILES': 'Missing structural data prevents association with toxicology results and limits scientific analysis. This is a key blocker for data usability.'
+  };
+
+  const tooltipText = alertTooltips[label] || 'This requires attention';
+
   return (
     <div className={`relative bg-white rounded-xl p-4 border-2 ${color} shadow-sm hover:shadow-md transition-all duration-300 group hover:scale-105`}>
       {alert && (
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center animate-pulse">
+        <div
+          className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center animate-pulse cursor-help"
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+          title={tooltipText}
+        >
           <AlertTriangle className="w-3 h-3 text-white" />
+          {showTooltip && (
+            <div className="absolute -top-20 -right-40 w-56 bg-red-900 text-white text-xs p-3 rounded-lg shadow-xl z-50 whitespace-normal">
+              <div className="font-semibold mb-1">Why This Warning?</div>
+              <div>{tooltipText}</div>
+              <div className="absolute -bottom-1 right-12 w-2 h-2 bg-red-900 transform rotate-45"></div>
+            </div>
+          )}
         </div>
       )}
 
